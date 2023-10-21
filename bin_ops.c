@@ -1,14 +1,22 @@
 #include <stdio.h>
 
+int set_bit(int i, int n)
+{
+  int res = 0;
+  res = i | (1 << n);
+  return res;
+}
+// -1
+// 0000 0000 0000 0000 0000 0000 0000 0001
+// 1111 1111 1111 1111 1111 1111 1111 1110
+// 1111 1111 1111 1111 1111 1111 1111 1111
+// 4 = 100   git1100 
 int main()
 {
     int i = 0;
     int n = 0;
-    int result = 0;
-
     scanf("%d%d", &i, &n);
-    result = i | (1 << n); // 0, 31
-    printf("result = \"%d\"\n", result);
+    printf("result = \"%d\"\n", set_bit(i, n));
 
     return 0;
 }
