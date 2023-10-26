@@ -288,4 +288,112 @@ int main()
 
 
 
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    int les;
+    cin >> les;
+    int time1 = 540;
+    for (int i = 1; i <= les; i++ )
+    {
+        time1 += 45;
+        if (i < les)
+        {
+            if ( i%2 == 0)
+                time1 += 15;
+            else 
+                time1 +=5;
+        }
+    }
+    int h, m;
+    h = time1 / 60;
+    m = time1 % 60;
+    cout<< h << " " <<  m;
+    return 0;
+}
+
+
+
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    int a, b, n;
+    cin >> a >> b >> n;
+    a *= n;
+    b *= n;
+    for (; b >= 100; b -= 100)
+        a++;
+    cout << a << " " << b;
+
+    return 0;
+}
+
+
+
+
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    int n, k;
+    cin >> n >> k;
+    cout << (n - k % n) % n;
+
+    return 0;
+}
+
+
+
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    int a, b, h;
+    cin >> h >> a >> b;
+    cout << (h - b) / (a - b) + ((h - b) % (a - b)) % 2 ;
+
+
+    return 0;
+}
+
+
+
+
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+    cout << n % m + 1 ;
+
+
+    return 0;
+}
+
+
+
+
+
 
