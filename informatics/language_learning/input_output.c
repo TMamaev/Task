@@ -42,87 +42,64 @@ void apple_2()
 
 void MKAD()
 {
-    int v, t;
+    int v;
+  
+    int t;
+  
     scanf("%d%d", &v, &t);
-    if (v * t > 0)
-        printf("%d", (v * t) % 109);
-    if (v * t < 0)
-        printf("%d", (109 + (v * t)) % 109);
+    
+    printf("%d", (v * t) % 109);
+
 }
 
 
 void last_num()
 {
     int n;
-    int k = 0;
+
     scanf("%d", &n);
-    for (int n1 = n; n1 != 0; n1 /= 10)
-        k+=1;
-    for (; k != 0; k--)
-        n %= 10;
-    printf("%d", n);
+
+    printf("%d", n % 100 % 10);
 }
 
 
 void num_of_tens()
 {
-    int n, n1;
+    int n;
+  
     scanf("%d", &n);
-    n1 = n;
-    n1 %= 10;
-    printf("%d", (n - n1) / 10);
+
+    printf("%d", (n - n % 10) / 10);
 }
 
 
 void num_of_tens2()
 {
-    int n, n1, n2, result = 0, k = 0;
+    int n;
+  
     scanf("%d", &n);
-    n1 = n;
-    while (n1 > 10) 
-        n1 %= 10;
-    n -= n1;
-    n2 = n;
-    for (int n3 = n; n3 != 0; n3 /= 10)
-        k += 1;
-    while (n != pow(10, k-1)){
-        result += 1;
-        n -= 10;
-    }
-    printf("%d", result);
+    
+    printf("%d", ((n - n % 10) % 100 / 10));
 }
 
 
 
 void sum_dig()
 {
-    int n, ans1 = 0;
+    int n;
+  
     scanf("%d", &n);
-    int ans2 = n;
-    while (ans2 > 10) 
-        ans2 %= 10;
-    n -= ans2;
-    int n2 = n;
-    int k = 0;
-    for (int n3 = n; n3 != 0; n3 /= 10)
-        k += 1;
-    while (n != pow(10, k-1)){
-        ans1 += 1;
-        n -= 10;
-    }
-    int ans3;
-    while (n != 0){
-        ans3 ++;
-        n -= 100;
-    }
-    printf("%d", ans3 + ans1 + ans2);
+
+  printf("%d", n % 100 % 10 + ((n - n % 10) % 100 / 10) + ((n - n % 100) / 100) );
 }
 
 
 
 void next_parity()
 {
-    int n, n1;
+    int n;
+    int n1;
+  
     scanf("%d", &n);
     n1 = n;
     n1 %= 2;
@@ -133,47 +110,23 @@ void next_parity()
 
 void electric_watch1()
 {
-    int n, k = 0;
+    int n;
+  
     scanf("%d", &n);
     n %= 1440;
-    for (; n > 60;)
-    {
-        k ++;
-        n -= 60;
-    }
-    printf("%d %d", k, n);
+    printf("%d %d", n/60, n%60);
 }
 
 
 void electric_watch2()
 {
-    int n, h = 0, m = 0, s = 0;
+    int n; 
+  
     scanf("%d", &n);
-    if (n > 86400)
-        n %= 86400;
-    if (n > 3600)
-        for (; n > 3600;)
-        {
-            h ++;
-            n -= 3600;
-        }
-    if (n > 60)
-        for (; n > 60;)
-        {
-            m ++;
-            n -= 60;
-        }
-    s = n;
-    printf("%d:", h);
-    if ( m < 10)
-        printf("0%d:", m);
-    else 
-    printf("%d:", h);
-
-    if (s<10)
-        printf("0%d", s);
-    else 
-        printf("%d", s);
+    n %= 86400;
+    printf("%d:", n / 3600);
+    ("%d%d:", 0 + (((n % 3600) / 60) / 10), (n % 3600) / 60);
+    printf("%d%d", 0 + ((n % 60) / 10), n % 60);
 }
 
 
@@ -193,24 +146,10 @@ void replace_values()
 void lesson_time()
 {
     int les;
+  
     scanf("%d", les);
-    )
-    int time1 = 540;
-    for (int i = 1; i <= les; i++ )
-    {
-        time1 += 45;
-        if (i < les)
-        {
-            if ( i%2 == 0)
-                time1 += 15;
-            else 
-                time1 +=5;
-        }
-    }
-    int h, m;
-    h = time1 / 60;
-    m = time1 % 60;
-    printf("%d %d", h, m);
+    
+    printf("%d %d", (540 + 5 * (les / 2 + les % 2) + (les / 2)) / 60, (540 + 5 * (les / 2 + les % 2) + (les / 2)) % 60);
 }
 
 
@@ -218,13 +157,16 @@ void lesson_time()
 
 void price()
 {
-    int a, b, n;
+    int a;
+  
+    int b;
+
+    int n; 
+  
     scanf("%d%d%d", &a, &b, &n);
     a *= n;
     b *= n;
-    for (; b >= 100; b -= 100)
-        a++;
-    printf("%d %d", a, b);
+    printf("%d %d", a + b / 100, b % 100);
 }
 
 
