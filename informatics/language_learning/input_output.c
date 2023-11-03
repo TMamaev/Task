@@ -48,7 +48,7 @@ void MKAD()
   
     scanf("%d%d", &v, &t);
     
-    printf("%d", (v * t) % 109);
+    printf("%d", ((v * t) % 109 + 109) % 109);
 
 }
 
@@ -59,7 +59,7 @@ void last_num()
 
     scanf("%d", &n);
 
-    printf("%d", n % 100 % 10);
+    printf("%d", n % 10);
 }
 
 
@@ -77,20 +77,30 @@ void num_of_tens2()
 {
     int n;
   
+    int n_without_1;
+  
     scanf("%d", &n);
-    
-    printf("%d", ((n - n % 10) % 100 / 10));
+    n_without_1 = (n - n % 10);
+    printf("%d", n_without_1 % 100 / 10); 
 }
 
 
 
 void sum_dig()
 {
-    int n;
+  int n;
   
-    scanf("%d", &n);
-
-  printf("%d", n % 100 % 10 + ((n - n % 10) % 100 / 10) + ((n - n % 100) / 100) );
+  int n_1;
+ 
+  int n_10;
+  
+  int n_100; 
+  
+  scanf("%d", &n);
+  n_1 =  n % 100 % 10;
+  n_10 = (n - n % 10) % 100 / 10;
+  n_100 = (n - n % 100) / 100;
+  printf("%d", n_1 + n_10 + n_100);
 }
 
 
@@ -114,7 +124,7 @@ void electric_watch1()
   
     scanf("%d", &n);
     n %= 1440;
-    printf("%d %d", n/60, n%60);
+    printf("%d %d", n / 60, n % 60);
 }
 
 
@@ -125,7 +135,7 @@ void electric_watch2()
     scanf("%d", &n);
     n %= 86400;
     printf("%d:", n / 3600);
-    ("%d%d:", 0 + (((n % 3600) / 60) / 10), (n % 3600) / 60);
+    printf("%d%d:", 0 + (((n % 3600) / 60) / 10), (n % 3600) / 60);
     printf("%d%d", 0 + ((n % 60) / 10), n % 60);
 }
 
@@ -145,28 +155,29 @@ void replace_values()
 
 void lesson_time()
 {
-    int les;
-  
-    scanf("%d", les);
-    
-    printf("%d %d", (540 + 5 * (les / 2 + les % 2) + (les / 2)) / 60, (540 + 5 * (les / 2 + les % 2) + (les / 2)) % 60);
+  int les;
+
+  int time15;
+
+  int time5;
+
+  scanf("%d", les);
+  time5 = les / 2 + les % 2;
+  time15 = les / 2;
+  printf("%d %d", (540 + 5 * time5  + 15 * time15) / 60, (540 + 5 * time5 + 15 * time15) % 60);
 }
-
-
 
 
 void price()
 {
-    int a;
+  int a; 
+  int b;
+  int n; 
   
-    int b;
-
-    int n; 
-  
-    scanf("%d%d%d", &a, &b, &n);
-    a *= n;
-    b *= n;
-    printf("%d %d", a + b / 100, b % 100);
+  scanf("%d%d%d", &a, &b, &n);
+  a *= n;
+  b *= n;
+  printf("%d %d", a + b / 100, b % 100);
 }
 
 
