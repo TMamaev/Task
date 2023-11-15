@@ -394,7 +394,3 @@ int main()
 
 #endif
 
-
-// gcc -o bin/informatics -D MAIN 02_if.c
-
-// gcc 
