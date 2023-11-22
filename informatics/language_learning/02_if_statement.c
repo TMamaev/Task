@@ -254,7 +254,8 @@ void ice_cream()
     if (k % 5 == 3 ||
         k % 5 == 0 ||
         k % 3 == 0 ||
-        k % 3 == 2)
+        k % 3 == 2 ||
+        (k % 3 == 1 && k % 5 == 1))
     {
         printf("YES");
     }
@@ -272,7 +273,9 @@ void meat()
     int n;
 
     scanf("%d%d%d", &k, &m, &n);
-    printf("%d", (n / k + 1) * 2 * m);
+    if (n >= k)
+        printf("%d", 2 * m);
+    else if ()
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=1451#1
