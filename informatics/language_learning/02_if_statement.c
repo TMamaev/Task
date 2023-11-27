@@ -397,3 +397,17 @@ int main()
 
 #endif
 
+
+
+
+void ASCII()
+{
+    int ASCII[256];
+        
+    for (int i = 0; i < 256; i++)
+    {
+        ASCII[i] = i;
+        printf("%d - %c ", ASCII[i], ASCII[i]);
+    }
+    return 0;
+}
