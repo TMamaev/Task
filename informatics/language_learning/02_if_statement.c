@@ -316,27 +316,206 @@ void triangle()
 void roman_number_system()
 {
     int n;
-
-    scanf("%d", &n);
-    if (n / 10 < 4)
-        printf("%X*c", n / 10, 'X');
-    else if (n / 10 == 4)
-        printf("LX");
-    else if (n / 10 > 4 && n / 10 < 9)
-        printf("L%0*c", (n - 50) / 10, 'X');
-    else if (n / 10 == 9)
-        printf("XC");
-    else 
-        printf("C");
-
-    if (n % 10 < 4)
-        printf("%0*c", n / 10, 'I');
-    else if (n % 10 == 4)
+    if (n == 1)
+        printf("I");
+    if (n == 2)
+        printf("II");
+    if (n == 3)
+        printf("III");
+    if (n == 4)
         printf("IV");
-    else if (n % 10 > 4 && n % 10 < 9)
-        printf("%0*c", (n - 5) % 10, 'I');
-    else if (n % 10 == 9)
-        printf("IX"); 
+    if (n == 5)
+        printf("V");
+    if (n == 6)
+        printf("VI");
+    if (n == 7)
+        printf("VII");
+    if (n == 8)
+        printf("VIII");
+    if (n == 9)
+        printf("IX");
+    if (n == 10)
+        printf("X");
+    if (n == 11)
+        printf("XI");
+    if (n == 12)
+        printf("XII");
+    if (n == 13)
+        printf("XIII");
+    if (n == 14)
+        printf("XIV");
+    if (n == 15)
+        printf("XV");
+    if (n == 16)
+        printf("XVI");
+    if (n == 17)
+        printf("XVII");
+    if (n == 18)
+        printf("XVIII");
+    if (n == 19)
+        printf("IXX");
+    if (n == 20)
+        printf("XX");
+    if (n == 21)
+        printf("XXI");
+    if (n == 22)    
+        printf("XXII");
+    if (n == 23)    
+        printf("XXIII");
+    if (n == 24)    
+        printf("XXIV");
+    if (n == 25)    
+        printf("XXV");
+    if (n == 26)    
+        printf("XXVI");
+    if (n == 27)    
+        printf("XXVII");
+    if (n == 28)    
+        printf("XXVIII");
+    if (n == 29)
+        printf("XXIX");
+    if (n == 30)
+        printf("XXX");
+    if (n == 31)
+        printf("XXXI");
+    if (n == 32)
+        printf("XXXII");
+    if (n == 33)
+        printf("XXXIII");
+    if (n == 34)
+        printf("XXXIV");
+    if (n == 35)
+        printf("XXXV");
+    if (n == 36)
+        printf("XXXVI");
+    if (n == 37)
+        printf("XXXVII");
+    if (n == 38)
+        printf("XXXVIII");
+    if (n == 39)
+        printf("XXXIX");
+    if (n == 40)
+        printf("XL");
+    if (n == 41)
+        printf("XLI");
+    if (n == 42)
+        printf("XLII");
+    if (n == 43)
+        printf("XLIII");
+    if (n == 44)
+        printf("XLIV");
+    if (n == 45)
+        printf("XLV");
+    if (n == 46)
+        printf("XLVI");
+    if (n == 47)
+        printf("XLVII");
+    if (n == 48)
+        printf("XLVIII");
+    if (n == 49)
+        printf("XLIX");
+    if (n == 50)
+        printf("L");
+    if (n == 51)
+        printf("LI");
+    if (n == 52)
+        printf("LII");
+    if (n == 53)
+        printf("LIII");
+    if (n == 54)
+        printf("LIV");
+    if (n == 55)
+        printf("LV");
+    if (n == 56)
+        printf("LVI");
+    if (n == 57)
+        printf("LVII");
+    if (n == 58)
+        printf("LVIII");
+    if (n == 59)
+        printf("LIX");
+    if (n == 60)
+        printf("LX");
+    if (n == 61)
+        printf("LXI");
+    if (n == 62)
+        printf("LXII");
+    if (n == 63)
+        printf("LXIII");
+    if (n == 64)    
+        printf("LXIV");
+    if (n == 65)
+        printf("LXV");
+    if (n == 66)
+        printf("LXVI");
+    if (n == 67)
+        printf("LXVII");
+    if (n == 68)
+        printf("LXVIII");
+    if (n == 69)
+        printf("LXIX");
+    if (n == 70)
+        printf("LXX");
+    if (n == 71)
+        printf("LXXI");
+    if (n == 72)    
+        printf("LXXII");
+    if (n == 73)
+        printf("LXXIII");
+    if (n == 74)
+        printf("LXXIV");
+    if (n == 75)
+        printf("LXXV");
+    if (n == 76)
+        printf("LXXVI");
+    if (n == 77)
+        printf("LXXVII");
+    if (n == 78)
+        printf("LXXVIII");
+    if (n == 79)
+        printf("LXXIX");
+    if (n == 80)
+        printf("LXXX");
+    if (n == 81)
+        printf("LXXXI");
+    if (n == 82)
+        printf("LXXXII");
+    if (n == 83)
+        printf("LXXXIII");
+    if (n == 84)
+        printf("LXXXIV");
+    if (n == 85)
+        printf("LXXXV");
+    if (n == 86)
+        printf("LXXXVI");
+    if (n == 87)
+        printf("LXXXVII");
+    if (n == 88)
+        printf("LXXXVIII");
+    if (n == 89)
+        printf("LXXXIX");
+    if (n == 90)
+        printf("XC");
+    if (n == 91)
+        printf("XCI");
+    if (n == 92)
+        printf("XCII");
+    if (n == 93)
+        printf("XCIII");
+    if (n == 94)
+        printf("XCIV");
+    if (n == 95)
+        printf("XCV");
+    if (n == 96)
+        printf("XCVI");
+    if (n == 97)
+        printf("XCVII");
+    if (n == 98)
+        printf("XCVIII");
+    if (n == 99)
+        printf("XCIX");
+    if (n == 100)
+        printf("C");
 }
 
 
