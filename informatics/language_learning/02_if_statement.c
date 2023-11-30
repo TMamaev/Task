@@ -20,7 +20,7 @@ void big_year()
     int year;
     
     scanf("%d", &year);
-    if (year % 4 == 0 && year % 100 != 0 && year % 400 == 0)
+    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
         printf("YES");
     else
         printf("NO");
@@ -80,7 +80,7 @@ void max_3()
     max = a;
     if (b > max)
         max = b;
-    else if (c > max)
+    if (c > max)
         max = c;
     printf("%d", max);
 }
@@ -111,7 +111,7 @@ void chess_2()
     int y2;
 
     scanf("%d%d%d%d", &x1, &y1, &x2, &y2);
-    if (x1 % 2 == x2 % 2 && y1 % 2 == y2 % 2)
+    if (abs(x1 - x2) == abs(y1 - y2))
         printf("YES");
     else
         printf("NO");
@@ -126,7 +126,8 @@ void chess_3()
     int y2;
 
     scanf("%d%d%d%d", &x1, &y1, &x2, &y2);
-    if (x1 % 2 == x2 % 2 || y1 % 2 == y2 % 2)
+    if (abs(x1 - x2) == abs(y1 - y2) ||
+        x1 == x2 && y1 == y2)
         printf("YES");
     else
         printf("NO");
@@ -141,15 +142,7 @@ void chess_4()
     int y2;
 
     scanf("%d%d%d%d", &x1, &y1, &x2, &y2);
-    if ((x1 + 1 == x2 && y1 + 1 == y2) ||
-        (x1 + 1 == x2 && y1 == y2) ||
-        (x1 + 1 == x2 && y1 - 1 == y2) ||
-        (x1 == x2 && y1 + 1 == y2) ||
-        (x1 == x2 && y1 == y2) ||
-        (x1 == x2 && y1 - 1 == y2) ||
-        (x1 - 1 == x2 && y1 + 1 == y2) ||
-        (x1 - 1 == x2 && y1 == y2) ||
-        (x1 - 1 == x2 && y1 - 1 == y2))
+    if (abs(x1 - x2) <= 1 && abs(y1 - y2) <= 1)
     {
         printf("YES");
     }
@@ -161,7 +154,7 @@ void chess_4()
 
 
 // https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=298#1
-void chess_6()
+void chess_5()
 {
     int x1;
     int x2;
@@ -169,14 +162,7 @@ void chess_6()
     int y2;
 
     scanf("%d%d%d%d", &x1, &y1, &x2, &y2);
-    if ((x1 + 2 == x2 && y1 + 1 == y2) ||
-        (x1 + 2 == x2 && y1 - 1 == y2) ||
-        (x1 + 1 == x2 && y1 - 2 == y2) ||
-        (x1 + 1 == x2 && y1 + 2 == y2) ||
-        (x1 - 2 == x2 && y1 + 1 == y2) ||
-        (x1 - 2 == x2 && y1 - 1 == y2) ||
-        (x1 - 1 == x2 && y1 + 2 == y2) ||
-        (x1 - 1 == x2 && y1 - 2 == y2))
+    if (abs(x1 - x2) * abs(y1 - y2) == 2)
     {
         printf("YES");
     }
@@ -193,12 +179,12 @@ void find_x()
     int b;
 
     scanf("%d%d", &a, &b);
-    if (((-1 * b) % a) == 0)
-        printf("%d", (-1 * b) / a);
+    if (a == 0)
+        printf("NO");
+    else if (-b % a == 0)
+        printf("%d", -b / a);
     else if (a == 0 && b == 0)
         printf("INF");
-    else 
-        printf("NO");
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=261#1
@@ -210,14 +196,12 @@ void find_x_2()
     int d;
 
     scanf("%d%d%d%d", &a, &b, &c, &d);
-    if (a == 0 && b == 0)
+    if (c == 0 && d == 0)
+        printf("NO");
+    else if (-b % a == 0)
+        printf("%d", -b / a);
+    else if (a == 0 && b == 0)
         printf("INF");
-    else if (a == 0 || b * c == a * d)
-        printf("NO");
-    else if (b % a == 0)
-        printf("%d", -d / a);
-    else
-        printf("NO");
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=262#1
@@ -228,20 +212,13 @@ void money()
     int c;
     int d;
     int e;
-    int f;
+
 
     scanf("%d%d%d%d", &a, &b, &c, &d);
-    if (d < b)
-    {
-        d++;
-        c--;
-    }
-    else
-    {
-        e = c - a;
-        f = d - b;
-    }
-    printf("%d %d", e, f);
+    b += a * 100;
+    c += d * 100;
+    e = c - b;
+    printf("%d %d", e / 100, e % 100);
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=264#1
@@ -304,9 +281,9 @@ void triangle()
     scanf("%d%d%d", &a, &b, &c);
     if (a + b > c)
         printf("YES");
-    else if (b + c > a)
+    if (b + c > a)
         printf("YES");
-    else if (a + c > b)
+    if (a + c > b)
         printf("YES");
     else
         printf("NO");
@@ -575,18 +552,3 @@ int main()
 }
 
 #endif
-
-
-
-
-void ASCII()
-{
-    int ASCII[256];
-        
-    for (int i = 0; i < 256; i++)
-    {
-        ASCII[i] = i;
-        printf("%d - %c ", ASCII[i], ASCII[i]);
-    }
-    return 0;
-}
