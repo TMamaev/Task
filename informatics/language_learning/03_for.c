@@ -9,9 +9,9 @@ void even_odd()
     int b;
 
     scanf("%d%d", &a, &b);
-    for (; a <= b; a++)
-        if (a % 2 == 0)
-            printf("%d ", a);
+    a += a % 2;
+    for (; a <= b; a += 2)
+        printf("%d ", a);
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=280&chapterid=334#1
@@ -23,9 +23,9 @@ void remain()
     int d;
 
     scanf("%d%d%d%d", &a, &b, &c, &d);
-    for (; a <= b; a++)
-        if (a % d == c)
-            printf("%d ", a);
+    a += a % d + c;
+    for (; a <= b; a += d)
+        printf("%d ", a);
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=280&chapterid=335#1
@@ -35,10 +35,9 @@ void square()
     int b;
 
     scanf("%d%d", &a, &b);
-    for (; a < b; a ++)
-        for (int i = 1; i < a; i++)
-            if (i == sqrt(a))
-                printf("%d ", a);
+    for (int i = 1; i < b / 2; i ++)
+        if (i * i >= a && i * i <= b)
+            printf("%d ", a);
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=280&chapterid=339#1
@@ -47,12 +46,14 @@ void min_divider()
     int x;
 
     scanf("%d", &x);
-    for (int i = 2; i < x; i++)
+    for (int i = 2; i < x / 2; i++)
+    {
         if (x % i == 0)
         {
             printf("%d", i);
             break;
         } 
+    }
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=280&chapterid=340#1
@@ -61,7 +62,7 @@ void dividers()
     int x;
 
     scanf("%d", &x);
-    for (int i = 1; i <= x; i++)
+    for (int i = 1; i <= x / 2; i++)
         if (x % i == 0)
             printf("%d ", i);
 }
@@ -244,7 +245,7 @@ void GNCE()
 
 int main()
 {
-    GNCE();
+    remain();
     return 0;
 }
 
