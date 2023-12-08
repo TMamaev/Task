@@ -35,9 +35,10 @@ void square()
     int b;
 
     scanf("%d%d", &a, &b);
-    for (int i = 1; i < b / 2; i ++)
-        if (i * i >= a && i * i <= b)
-            printf("%d ", a);
+    for (int i = sqrt(a) + 1; i * i > a && i * i < b; i++)
+    {
+        printf("%d ", i * i);
+    }
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=280&chapterid=339#1
@@ -46,7 +47,7 @@ void min_divider()
     int x;
 
     scanf("%d", &x);
-    for (int i = 2; i < x / 2; i++)
+    for (int i = 2; i * i < x; i++)
     {
         if (x % i == 0)
         {
@@ -62,7 +63,7 @@ void dividers()
     int x;
 
     scanf("%d", &x);
-    for (int i = 1; i <= x / 2; i++)
+    for (int i = 1; i * i <= x; i++)
         if (x % i == 0)
             printf("%d ", i);
 }
