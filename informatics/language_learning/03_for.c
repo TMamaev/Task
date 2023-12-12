@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
@@ -33,11 +34,18 @@ void square()
 {
     int a;
     int b;
+    int from;
+    int i;
 
     scanf("%d%d", &a, &b);
-    for (int i = sqrt(a) + 1; i * i > a && i * i < b; i++)
+    from = sqrt(a);
+    from += (from * from != a);
+    i = from * from;
+    for (; i < b;)
     {
-        printf("%d ", i * i);
+        printf("%d ", i);
+        ++from;
+        i = from * from;
     }
 }
 
@@ -46,7 +54,7 @@ void min_divider()
 {
     int x;
 
-    scanf("%d", &x);
+    scanf("%d", &x); // 1 2 3 4 5 121 101
     for (int i = 2; i * i < x; i++)
     {
         if (x % i == 0)
@@ -246,7 +254,7 @@ void GNCE()
 
 int main()
 {
-    remain();
+    square();
     return 0;
 }
 
