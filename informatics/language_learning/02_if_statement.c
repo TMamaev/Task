@@ -252,7 +252,6 @@ void meat()
     scanf("%d%d%d", &k, &m, &n);
     if (n >= k)
         printf("%d", 2 * m);
-    else if ()
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=1451#1
