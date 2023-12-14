@@ -83,17 +83,36 @@ void run()
 {
     double x;
     double y;
-
     int day = 1;
-
+    
     scanf("%lg%lg", &x, &y);
-    while (x <= y)
+    while (x < y)
     {
-        x += x * 0.1;
-        day += 1;
+        x *= 1.1;
+        day++;
     }
     printf("%d", day);
 }
+
+void bank()
+{
+    double x;
+    double p;
+    double y;
+    int years = 0;
+
+    scanf("%lg%lg%lg", &x, &p, &y);
+    p = p / 100;
+    while (x < y)
+    {
+        years++;
+        x += x * p;
+        trunc(x);
+    }
+    printf("%d", years);
+}
+
+
 
 #ifdef MAIN
 
