@@ -49,7 +49,7 @@ void squart_3()
 {
     bool check = false;
     int n;
-    int i = 2;
+    int i = 1;
 
     scanf("%d", &n);
     while (i <= n)
