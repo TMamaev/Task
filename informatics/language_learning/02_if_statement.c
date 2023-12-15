@@ -243,6 +243,7 @@ void ice_cream()
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=265#1
+// FIXME: wrong solution
 void meat()
 {
     int k;
@@ -262,9 +263,8 @@ void even_odd()
     int c;
 
     scanf("%d%d%d", &a, &b, &c);
-    if ((a % 2 == 0 && (b % 2 != 0 || c % 2 != 0)) ||
-        (b % 2 == 0 && (a % 2 != 0 || c % 2 != 0)) ||
-        (c % 2 == 0 && (b % 2 != 0 || a % 2 != 0)))
+    int s = (a % 2 + b % 2 + c % 2) % 3;
+    if (s)
         printf("YES");
     else
         printf("NO");
@@ -502,20 +502,27 @@ void arrange()
     int a;
     int b;
     int c;
+    int max;
+    int min;
+    int mid;
 
     scanf("%d%d%d", &a, &b, &c);
-    if (a <= b && b <= c)
-        printf("%d %d %d", a, b, c);
-    else if (a <= c && c <= b)
-        printf("%d %d %d", a, c, b);
-    else if (b <= a && a <= c)
-        printf("%d %d %d", b, a, c);
-    else if (b <= c && c <= a)
-        printf("%d %d %d", b, c, a);
-    else if (c <= a && a <= b)
-        printf("%d %d %d", c, a, b);
-    else if (c <= b && b <= a)
-        printf("%d %d %d", c, b, a);
+    max = a;
+    min = c;
+    mid = b;
+    if (b > max)
+        max = b;
+    if (c > max)
+        max = c;
+    if (b < min)
+        min = b;
+    if (a < min)
+        min = a;
+    if (a != max && a != min)
+        mid = a;
+    if (c != max && c != min)
+        mid = c;
+    printf("%d %d %d", min, mid, max);
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=266#1
@@ -538,9 +545,6 @@ void coordinate_system()
     else
         printf("NO");
 }
-
-
-    
 
 #ifdef MAIN
 
