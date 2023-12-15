@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
@@ -41,7 +40,7 @@ void square()
     from = sqrt(a);
     from += (from * from != a);
     i = from * from;
-    for (; i < b;)
+    while (i < b)
     {
         printf("%d ", i);
         ++from;
@@ -54,7 +53,7 @@ void min_divider()
 {
     int x;
 
-    scanf("%d", &x); // 1 2 3 4 5 121 101
+    scanf("%d", &x); 
     for (int i = 2; i * i < x; i++)
     {
         if (x % i == 0)
