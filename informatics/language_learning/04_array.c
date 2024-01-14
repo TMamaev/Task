@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
-
+#include <stdlib.h>
 // https://informatics.msk.ru/mod/statements/view.php?id=208#1
 void even()
 {
@@ -113,11 +113,67 @@ void small_big_small()
     printf("%d", sum);
 }
 
+
+void reverse()
+{
+    int n;
+    int rev;
+    int *arr;
+
+    scanf("%d", &n);
+    arr = calloc(n, sizeof(int)); // malloc(n * sizeof(int))
+    
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    
+    for (int i = 0, k = n - 1; i < n / 2; i++, k--)
+    {
+        rev = arr[k];
+        arr[k] = arr[i];
+        arr[i] = rev;
+    }
+    
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    free(arr);
+}
+
+int get(int *arr, int row, int col)
+{
+    return ;
+}
+
+void test()
+{
+    int row = 2;
+    int col = 3;
+    int *arr = calloc(row * col, sizeof(int));
+
+    for (int i = 0; i < row * col; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    // i - row
+    // j - col
+    for (int i = 0; i < row * col; i++)
+    {
+        if (i == col)
+            printf("\n");
+        printf("%d ", arr[i]);
+
+    }
+    printf("arr[1][2] = %d\n", get(arr, 1, 2));
+}
+
 #ifdef MAIN
 
 int main()
 {
-    small_big_small();
+    test();
     return 0;
 }
 
