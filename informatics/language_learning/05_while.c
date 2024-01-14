@@ -47,7 +47,7 @@ void squart_2()
 
 void squart_3()
 {
-    bool check = false;
+    int check = 0;
     int n;
     int i = 1;
 
@@ -55,7 +55,7 @@ void squart_3()
     while (i <= n)
     {
         if (i == n)
-            check = true;
+            check = 1;
         i *= 2;
     }
     if (check)
