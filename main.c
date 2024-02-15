@@ -74,6 +74,40 @@ int** create_matrix(size_t rows, size_t cols)
     return matrix;
 }
 
+
+////////// number = 0 !!!!!
+int num_len(size_t number)
+{
+    int len = 0;
+
+    for (; number != 0; number /= 10)
+    {
+        len++;
+    }
+    return len;
+}
+
+int sum_digits(size_t number)
+{
+    int len = num_len(number);   
+    int sum = 0;
+
+    for (int i = number; i != 0; i /= 10)
+    {
+        sum += i % 10;
+    }
+    return sum;
+}
+
+// 1234
+// 1) 1234 % 10; / 10
+// 123
+// 2) 123 % 10; / 10
+int to_dec(size_t number, size_t base)
+{
+    return 0;
+}
+
 // 1  2  3  4
 // 8  7  6  5
 // 9 10 11 12
@@ -104,31 +138,46 @@ void snake(int** matrix, size_t rows, size_t cols)
 
 void scan_matrix(int** matrix, size_t rows, size_t cols)
 {
-    for (int i = 0; i != rows - 1; i++)
+    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j != cols - 1; j++)
-            scanf("%d", matrix[i][j]);
+        for (int j = 0; j < cols; j++)
+        {
+            // scanf("%d", &matrix[i][j]);
+            // scanf("%d", matrix[i] + j);
+            scanf("%d", *(matrix + i) + j);
+        }
     }
+}
+
+int max_cost(cost1, cost2)
+{
+    if (cost1 > cost2)
+        return cost1;
+    return cost2;
 }
 
 void money(int** matrix, size_t rows, size_t cols)
 {
-    int coins = 0; 
+    int cost = 0;
 
-    for (int i = 0, j = cols; j != 0 && i != rows;)
+    for (int i = rows - 2; i >= 0; i--)
     {
-        if (matrix[i][j - 1] > matrix[i + 1][j])
+        matrix[i][0] += matrix[i + 1][0];
+    }
+    for (int j = 1; j < cols; j++)
+    {
+        matrix[rows - 1][j] += matrix[rows - 1][j - 1];
+    }
+
+    for (int i = rows - 2; i < rows; i++)
+    {
+        for (int j = 1; j < cols; j++)
         {
-            coins += matrix[i][j - 1];
-            j--;
-        }
-        else 
-        {
-            coins += matrix[i - 1][j];
-            i--;
+            matrix[i][j] += max_cost(matrix[i + 1][j], matrix[i][j - 1]);
         }
     }
-    printf("%d", coins);
+
+    printf("%d", matrix[0][cols - 1]);
 }
 
 void print_matrix(int** matrix, size_t rows, size_t cols)
@@ -151,20 +200,39 @@ void print_matrix(int** matrix, size_t rows, size_t cols)
 
 int main(int argc, char** argv)
 {
-    if (argc < 3)
-        return -1;
-
-    size_t rows = atoi(argv[1]);
-    size_t cols = atoi(argv[2]);
-    
-    int **matrix = create_matrix(rows, cols);
-    if (!matrix)
+    struct s_person
     {
-        perror("create_matrix");
-        return -1;
-    }
-    scan_matrix(matrix, rows, cols);
-    money(matrix, rows, cols);
+        int age;
+        char sex;
+        char *address;
+    } p1;
+    
+    p1.age = 10;
+
+    struct s_person p2;
+    p2.age = 20;
+
+    typedef struct s_person t_person;
+
+    t_person *p3 = malloc(sizeof(t_person));
+    p3->age = 30;
+
+    int a;
+
+    // if (argc < 3)
+    //     return -1;
+
+    // size_t rows = atoi(argv[1]);
+    // size_t cols = atoi(argv[2]);
+    
+    // int **matrix = create_matrix(rows, cols);
+    // if (!matrix)
+    // {
+    //     perror("create_matrix");
+    //     return -1;
+    // }
+    // scan_matrix(matrix, rows, cols);
+    // money(matrix, rows, cols);
 
     // trungle();
 //    unsigned int a = 0xDEADBEAF;
