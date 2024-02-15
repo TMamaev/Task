@@ -1,8 +1,25 @@
+
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
 // https://informatics.msk.ru/mod/statements/view.php?id=208#1
+void scanf_mat(int n, int *arr)
+{
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+}
+
+void print_mat(int n, int *arr)
+{
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+}
+
 void even()
 {
     int n;
@@ -123,10 +140,7 @@ void reverse()
     scanf("%d", &n);
     arr = calloc(n, sizeof(int)); // malloc(n * sizeof(int))
     
-    for (int i = 0; i < n; i++)
-    {
-        scanf("%d", &arr[i]);
-    }
+    scanf_mat(n, arr);
     
     for (int i = 0, k = n - 1; i < n / 2; i++, k--)
     {
@@ -135,10 +149,7 @@ void reverse()
         arr[i] = rev;
     }
     
-    for (int i = 0; i < n; i++)
-    {
-        printf("%d ", arr[i]);
-    }
+    print_mat(n, arr);
     free(arr);
 }
 
