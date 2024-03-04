@@ -79,10 +79,16 @@ int** create_matrix(size_t rows, size_t cols)
 int num_len(size_t number)
 {
     int len = 0;
-
-    for (; number != 0; number /= 10)
+    if (number)
     {
-        len++;
+        for (; number != 0; number /= 10)
+        {
+            len++;
+        }
+    }
+    else
+    {
+        len = 1;
     }
     return len;
 }
@@ -105,6 +111,20 @@ int sum_digits(size_t number)
 // 2) 123 % 10; / 10
 int to_dec(size_t number, size_t base)
 {
+    int l = 0;
+    int ans = 0;
+
+    for (int i = number; i != 0; i /= 10)
+    {
+        l++;
+    }
+    for (int len = 0; number != 0 && len < l; number /= 10)
+    {
+        ans += (number % 10) * pow(base, len);
+        len++;
+    }
+    printf("%d", ans);
+    
     return 0;
 }
 

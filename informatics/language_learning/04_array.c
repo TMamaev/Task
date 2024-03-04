@@ -20,6 +20,8 @@ void print_mat(int n, int *arr)
     }
 }
 
+
+
 void even()
 {
     int n;
@@ -180,11 +182,63 @@ void test()
     printf("arr[1][2] = %d\n", get(arr, 1, 2));
 }
 
+
+int search(int *arr, size_t size, int val)
+{
+    int size1 = (int)size;
+
+    for (int i = 0; i < size1; i++)
+    {
+        if (arr[i] == val)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+// O(N)
+
+int binary_search(int *arr, size_t size, int val)
+{
+    size_t left = 0;
+    size_t right = size;
+    size_t mid = 0;
+    
+    while (left < right)
+    {
+        mid = (left + right) / 2;
+        
+        if (arr[mid] == val)
+            return mid;
+        else if (arr[mid] > val)
+            right = (left + right) / 2;
+        else 
+            left = (left + right) / 2;
+    }
+}
+// (b - a) / 2. (a + b) / 2
+// [a; b]
+//
+// gcc -o main main.c
+// a.out -> main
+
+// Иванов
+// а б ... ж ... и ... н ... я
+// открыл середину - Н.
+// листаю назад на половину от первой половин - Ж.
+// хранить позицию двух букв Ж и Н.
+// если найден - легко, проверка просто. Если на позиции right - 1 находится left
+
+
+
 #ifdef MAIN
 
 int main()
 {
-    test();
+    int arr[] = {1, 3, 4, 5, 67, 354, 7536};
+    printf("%d\n", binary_search(arr, 7, 4));
+    printf("%d\n", binary_search(arr, 7, 3));
+    //printf
     return 0;
 }
 
