@@ -546,6 +546,49 @@ void coordinate_system()
         printf("NO");
 }
 
+void trungle()
+{
+    int a;
+    int b;
+    int c;
+
+    scanf("%d%d%d", &a, &b, &c);
+    if ((c * c) > (b * b + a * a))
+        printf("obtuse");
+    else if ((c * c) == (b * b + a * a))
+        printf("right");
+    else if ((c * c) < (b * b + a * a))
+        printf("acute");
+    else
+        printf("impossible");
+}
+
+void korovy()
+{
+    int n;
+
+    scanf("%d", &n);
+    if (n % 10 == 1)
+        printf("На лугу пасется %d корова.", n);
+    else if (n % 10 > 1 && n % 10 < 5)
+        printf("На лугу пасется %d коровы.", n);
+    else if (n % 10 >= 5 || n % 10 == 0)
+        printf("На лугу пасется %d коров.", n);
+}
+
+void coordinate()
+{
+    int M, N, x, y;
+
+    scanf("%d%d%d%d", M, N, x, y);
+    if (x == 0 && y == 0)
+        printf("%d %d \n %d %d", x + 1, y, y + 1, x);
+    else if (x == 0 && y == N)
+        printf("%d %d \n %d %d", x + 1, y, y - 1, x);
+    else if (x == 0 && y == N)
+        printf("%d %d \n %d %d", x + 1, y, y - 1, x);
+}
+
 #ifdef MAIN
 
 int main()
