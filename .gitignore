@@ -1,6 +1,7 @@
 replit.nix
 .replit
 .ccls-cache
+.vscode
 
 # Prerequisites
 *.d
