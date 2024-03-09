@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stddef.h>
 
 int get_major(int *arr, size_t size)
 {
@@ -10,18 +10,8 @@ int get_major(int *arr, size_t size)
             m = arr[i];
         else if (arr[i] == m)
             sum++;
-        else // if (sum != 1 && arr[i] != m)
+        else
             sum--;
-    }   
+    }
     return m;
-}
-
-
-int main()
-{
-    int arr[] = { 1, 3, 3, 5, 3, 3, 1, 1 };
-    size_t size = sizeof(arr) / sizeof(arr[0]);
-
-    printf("major - %d\n", get_major(arr, size));
-    return 0;
 }
