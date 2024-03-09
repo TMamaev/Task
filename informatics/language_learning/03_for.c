@@ -248,6 +248,79 @@ void GNCE()
     }
 }
 
+// https://informatics.msk.ru/mod/statements/view.php?id=280&chapterid=339#1
+void min_div()
+{
+    int x;
+
+    scanf("%d", &x);
+    for (int i = 2; i <= x / 2; i++)
+    {
+        if (x % i == 0)
+        {
+            printf("%d", i);
+            break;
+        }
+    }
+}
+
+// https://informatics.msk.ru/mod/statements/view.php?id=280&chapterid=340#1
+void all_div()
+{
+    int x;
+
+    scanf("%d", &x);
+    for (int i = 1; i <= x / 2; i++)
+    {
+        if (x % i == 0)
+        {
+            printf("%d", i);
+        }
+    }
+}
+
+// https://informatics.msk.ru/mod/statements/view.php?id=280&chapterid=341#1
+void num_div()
+{
+    int x, n = 0;
+
+    scanf("%d", &x);
+    for (int i = 1; i <= x / 2; i++)
+    {
+        if (x % i == 0)
+        {
+            n++;
+        }
+    }
+    printf("%d", n);
+}
+
+//  https://informatics.msk.ru/mod/statements/view.php?id=280&chapterid=342#1
+void sum_100()
+{
+    int x, sum = 0;
+
+    for (int i = 1; i <= 100; i++)
+    {
+        scanf("%d", &x);
+        sum += x;
+    }
+    printf("%d", sum);
+}
+
+// https://informatics.msk.ru/mod/statements/view.php?id=280&chapterid=343#1
+void sum()
+{
+    int x, N, sum = 0;
+
+    scanf("%d", &N);
+    for (int i = 1; i <= N; i++)
+    {
+        scanf("%d", &x);
+        sum += x;
+    }
+    printf("%d", sum);
+}
 
 #ifdef MAIN
 
