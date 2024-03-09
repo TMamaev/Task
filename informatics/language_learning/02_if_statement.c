@@ -589,6 +589,69 @@ void coordinate()
         printf("%d %d \n %d %d", x + 1, y, y - 1, x);
 }
 
+// https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=253#1
+void leap_year()
+{
+    int year;
+
+    scanf("%d", &year);
+    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+        printf("YES");
+    else
+        printf("NO");
+}
+
+// https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=2959#1
+void sign_x()
+{
+    int x;
+
+    scanf("%d", &x);
+    if (x > 0)
+        printf("1");
+    else if (x == 0)
+        printf("0");
+    else
+        printf("-1");
+}
+
+// https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=294#1
+void max_of_3()
+{
+    int a, b, c, max = 0;
+
+    scanf("%d%d%d", &a, &b, &c);
+    if (a > max)
+        max = a;
+    if (b > max)
+        max = b;
+    if (c > max)
+        max = c;
+    printf("%d", max);
+}
+
+// https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=254#1
+void rook()
+{
+    int x1, y1, x2, y2;
+
+    scanf("%d%d%d%d", &x1, &y1, &x2, &y2);
+    if (x1 == x2 || y1 == y2)
+        printf("YES");
+    else
+        printf("NO");
+}
+
+//https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=262#1
+void change()
+{
+    int a, b, c, d;
+
+    scanf("%d%d%d%d", &a, &b, &c, &d);
+    b = a * 100 + b;
+    d = c * 100 + d;
+    printf("%d %d", (d - b) / 100, (d - b) % 100);
+}
 #ifdef MAIN
 
 int main()
