@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdbool.h>
 
+// https://informatics.msk.ru/mod/statements/view.php?id=249#1
 void squart()
 {
     int n;
@@ -15,6 +16,7 @@ void squart()
     }
 }
 
+// https://informatics.msk.ru/mod/statements/view.php?id=249&chapterid=3058#1
 void min_div()
 {
     int n;
@@ -32,6 +34,7 @@ void min_div()
     }
 }
 
+// https://informatics.msk.ru/mod/statements/view.php?id=249&chapterid=3059#1
 void squart_2()
 {
     int n;
@@ -45,6 +48,7 @@ void squart_2()
     }
 }
 
+// https://informatics.msk.ru/mod/statements/view.php?id=249&chapterid=3060#1
 void squart_3()
 {
     int check = 0;
@@ -64,6 +68,7 @@ void squart_3()
         printf("NO");
 }
 
+// https://informatics.msk.ru/mod/statements/view.php?id=249&chapterid=3061#1
 void log_1()
 {
     int n;
@@ -79,6 +84,7 @@ void log_1()
     printf("%d", ans);
 }
 
+// https://informatics.msk.ru/mod/statements/view.php?id=249&chapterid=3062#1
 void run()
 {
     double x;
@@ -94,6 +100,7 @@ void run()
     printf("%d", day);
 }
 
+// https://informatics.msk.ru/mod/statements/view.php?id=249&chapterid=3063#1
 void bank()
 {
     double x;
