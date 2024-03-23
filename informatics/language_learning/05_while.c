@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-#include <stdbool.h>
 
 // https://informatics.msk.ru/mod/statements/view.php?id=249#1
 void squart()
