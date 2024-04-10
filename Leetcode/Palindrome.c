@@ -1,33 +1,19 @@
 #include <math.h>
 #include <stdio.h>
 
-int long1 (int n)
+int isPalindrome(int n)
 {
-    int l = 0;
-    while (n != 0)
+    long long res = 0;
+    long long n1 = n;
+    while(n1 != 0)
     {
-        n /= 10;
-        l++;
+        res = res * 10 + n1 % 10;
+        n1 /= 10;
     }
-    return l;
-}
-
-int isPalindrome(int n) {
-    int check = 1;
-
-    for (double first = 1, last = long1(n); first <= last; first++ && last--)
-    {
-        if (n % pow(10, first) == n / pow(10, last))
-        {
-            check = 1;
-        }
-        else
-        {
-            return 0;
-        }
-    }
-
-    return check;
+    if (res == n && res >= 0)
+        return 1;
+    else
+        return 0;
 }
 
 int main()
