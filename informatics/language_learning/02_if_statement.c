@@ -546,7 +546,8 @@ void coordinate_system()
         printf("NO");
 }
 
-void trungle()
+// https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=302#1
+void triangle()
 {
     int a;
     int b;
@@ -563,7 +564,8 @@ void trungle()
         printf("impossible");
 }
 
-void korovy()
+// https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=303#1
+void cows()
 {
     int n;
 
@@ -576,6 +578,7 @@ void korovy()
         printf("На лугу пасется %d коров.", n);
 }
 
+// https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=1445#1
 void coordinate()
 {
     int M, N, x, y;
@@ -642,7 +645,7 @@ void rook()
         printf("NO");
 }
 
-//https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=262#1
+// https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=262#1
 void change()
 {
     int a, b, c, d;
