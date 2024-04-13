@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 
 // https://informatics.msk.ru/mod/statements/view.php?id=2587&chapterid=114#1
 int SumOfDigits(int n)
@@ -48,7 +47,7 @@ void MinMaxDigit(int n)
 //https://informatics.msk.ru/mod/statements/view.php?id=2587&chapterid=117#1
 void bin_sys(int n)
 {
-    while(n != 0)
+    while (n != 0)
     {
         printf("%d", n % 2);
         n /= 2;
@@ -58,11 +57,14 @@ void bin_sys(int n)
 // https://informatics.msk.ru/mod/statements/view.php?id=2587&chapterid=118#1
 void reverse(int n)
 {
+    int res = 0;
+
     while (n != 0)
     {
-        printf("%d", n % 10);
+        res += res * 10 + n % 10;
         n /= 10;
     }
+    printf("%d", res);
 }
 
 int main()
