@@ -185,6 +185,8 @@ void find_x()
         printf("%d", -b / a);
     else if (a == 0 && b == 0)
         printf("INF");
+    else
+        printf("NO");
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=261#1
@@ -196,12 +198,12 @@ void find_x_2()
     int d;
 
     scanf("%d%d%d%d", &a, &b, &c, &d);
-    if (c == 0 && d == 0)
-        printf("NO");
-    else if (-b % a == 0)
+    if (-b / a == 0 || -b % a == 0)
         printf("%d", -b / a);
     else if (a == 0 && b == 0)
         printf("INF");
+    else 
+        printf("NO");
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=276&chapterid=262#1
