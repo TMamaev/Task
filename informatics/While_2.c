@@ -81,7 +81,7 @@ void max_sequence()
     printf("%d", max);
 }
 
-// https://informatics.msk.ru/mod/statements/view.php?id=2585&chapterid=3069#1
+// https://informatics.msk.ru/mod/statements/view.php?id=2585&chapterid=3069#1git 
 void last_sequence()
 {
     int n;
@@ -118,4 +118,10 @@ void second_max_sequence()
         scanf("%d", &n);
     }
     printf("%d", max_2);
+}
+
+int main()
+{
+    second_max_sequence();
+    return 0;
 }
