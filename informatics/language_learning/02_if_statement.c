@@ -179,9 +179,7 @@ void find_x()
     int b;
 
     scanf("%d%d", &a, &b);
-    if (a == 0)
-        printf("NO");
-    else if (-b % a == 0)
+    if (a != 0 && b % a == 0)
         printf("%d", -b / a);
     else if (a == 0 && b == 0)
         printf("INF");
@@ -198,11 +196,12 @@ void find_x_2()
     int d;
 
     scanf("%d%d%d%d", &a, &b, &c, &d);
-    if (-b / a == 0 || -b % a == 0)
-        printf("%d", -b / a);
-    else if (a == 0 && b == 0)
+
+    if (a == 0 && b == 0)
         printf("INF");
-    else 
+    else if (a != 0 && b % a == 0 && c * (-b / a) + d != 0)
+        printf("%d\n", -b / a);
+    else
         printf("NO");
 }
 
