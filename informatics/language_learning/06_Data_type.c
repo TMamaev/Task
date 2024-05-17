@@ -54,10 +54,7 @@ void text()
     int n, k;
     
     scanf("%d%d", &k, &n);
-    if (n > k)
-        printf("%d %d", n / k + 1, n % k);
-    else
-        printf("1 %d", n);
+    printf("%d %d", n / k + (n != k), n % k + (n == k));
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=1120&chapterid=1483#1
