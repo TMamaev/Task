@@ -6,7 +6,7 @@ struct list_item
 
 int length(struct list_item *head)
 {
-    int length;
+    int length = 0;
     
     while (head != 0)
     {
