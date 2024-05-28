@@ -1,92 +1,87 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 struct point
 {
-    int x;
-    int y;
+    double x;
+    double y;
 };
 
 // https://informatics.msk.ru/mod/statements/view.php?id=279&chapterid=322#1
 void point_on_coordinate()
 {
     int n;
-    int max_x = 0;
-    int max_y = 0;
-    struct point p = {p.x, p.y};
+    struct point max = {0, 0};
+    struct point p;
     
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
-        scanf("%d%d", &p.x, &p.y);
+        scanf("%lf%lf", &p.x, &p.y);
         
-        if (abs(p.x) + abs(p.y) > abs(max_x) + abs(max_y))
+        if (sqrt(p.x * p.x + p.y * p.y) > sqrt(max.x * max.x + max.y * max.y))
         {
-            max_x = p.x;
-            max_y = p.y;
+            max.x = p.x;
+            max.y = p.y;
         }
     }
-    printf("%d %d", max_x, max_y);
+    printf("%d %d", (int)max.x, (int)max.y);
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=279&chapterid=323#1
 void mid_num()
 {
     int n;
-    double mid_x = 0;
-    int mid_y = 0;
-    struct point p = {p.x, p.y};
+    struct point mid = {0, 0};
+    struct point p;
     
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
-        scanf("%d%d", &p.x, &p.y);
-        mid_x += p.x;
-        mid_y += p.y;
+        scanf("%lf%lf", &p.x, &p.y);
+        mid.x += p.x;
+        mid.y += p.y;
     }
-    printf("%f %f", mid_x / n, mid_y / n);
+    printf("%lf %lf", mid.x / n, mid.y / n);
 }
 
 struct student
 {
-    char surname;
-    char name;
-    int mark1;
-    int mark2;
-    int mark3;
+    char surname[100];
+    char name[100];
+    int mark[3];
 };
 
 // https://informatics.msk.ru/mod/statements/view.php?id=279&chapterid=328#1
 void marks()
 {
     int n;
-    double mid_mark1 = 0;
-    int mid_mark2 = 0;
-    int mid_mark3 = 0;
-    struct student s = {s.surname, s.name, s.mark1, s.mark2, s.mark3};
+    double mid_mark[3] = {0};
+    struct student s;
 
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
-        scanf("%s%s%d%d%d", &s.surname, &s.name, &s.mark1, &s.mark2, &s.mark3);
-        mid_mark1 += s.mark1;
-        mid_mark2 += s.mark2;
-        mid_mark3 += s.mark3;
+        scanf("%s%s%d%d%d", s.surname, s.name, &s.mark[0], &s.mark[1], &s.mark[2]);
+        mid_mark[0] += s.mark[0];
+        mid_mark[1] += s.mark[1];
+        mid_mark[2] += s.mark[2];
     }
-    printf("%f %f %f", mid_mark1 / n, mid_mark2 / n, mid_mark3 / n);
+    printf("%lf %lf %lf", mid_mark[0] / n, mid_mark[1] / n, mid_mark[2] / n);
 }
 
 // https://informatics.msk.ru/mod/statements/view.php?id=279&chapterid=329#1
 void mark_3()
 {
     int n;
-    struct student s = {s.surname, s.name, s.mark1, s.mark2, s.mark3};
+    struct student s;
     
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
-        scanf("%s%s%d%d%d", &s.surname, &s.name, &s.mark1, &s.mark2, &s.mark3);
-        if (s.mark1 > 3 && s.mark2 > 3 && s.mark3 > 3)
+        scanf("%s%s%d%d%d", s.surname, s.name, &s.mark[0], &s.mark[1], &s.mark[2]);
+        if (s.mark[0] > 3 && s.mark[1] > 3 && s.mark[2] > 3)
             printf("%s %s", s.surname, s.name);
     }
 }
@@ -96,16 +91,22 @@ void best_marks()
 {
     int n;
     double max_mid = 0;
-    struct student s = {s.surname, s.name, s.mark1, s.mark2, s.mark3};
+    struct student s;
     
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
-        scanf("%s%s%d%d%d", s.surname, s.name, &s.mark1, &s.mark2, &s.mark3);
-        if ((s.mark1 + s.mark2 + s.mark3) / 3 > max_mid)
+        scanf("%s%s%d%d%d", s.surname, s.name, &s.mark[0], &s.mark[1], &s.mark[2]);
+        if ((s.mark[0] + s.mark[1] + s.mark[2]) / 3 > max_mid)
         {
-            max_mid = (s.mark1 + s.mark2 + s.mark3) / 3;
+            max_mid = (s.mark[0] + s.mark[1] + s.mark[2]) / 3;
             printf("%s %s", s.surname, s.name);
         }
     }
+}
+
+int main()
+{
+    marks();
+    return 0;
 }
