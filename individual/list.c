@@ -32,34 +32,51 @@ t_list *lst_last(t_list *head)
     return head;
 }
 
-int new_lst(t_list *head, int new)
+// Создать новый элемент списка с содержимым контент
+t_list *ft_lstnew(int content)
 {
-     while (head->next != NULL)
-    {           
-        head = head->next;
-    }
-    head = head->next;
-    head = malloc(new);
-    return head;
+    t_list *new = malloc(sizeof(t_list));
+
+    if (new)
+        new->data = content;
+    return new;
+}
+
+// Добавить новый элемент в конец списка
+void ft_lstadd_back(t_list **lst, t_list *new)
+{
+    if (!new)
+        return;
+    while (*lst->next != NULL)
+        *lst = *lst->next;
+    *lst->next = new;
+
 }
 
 
+void ft_lstadd_front(t_list **lst, t_list *new)
+{
+    if (!new)
+        return ;
+    new->next = *lst;
+    *lst = new;
+}
 
 
 int main()
 {
     lst_last(NULL);
 
-    // struct list_item *head;
-    // struct list_item item;
-    // struct list_item item2;
-    // struct list_item item3;
-    // struct list_item *ptr;
+    struct list_item *head;
+    struct list_item item;
+    struct list_item item2;
+    struct list_item item3;
+    struct list_item *ptr;
 
-    // head = &item;
-    // head->next = &item2;
-    // item2.next = &item3;
-    // item3.next = NULL;
+    head = &item;
+    head->next = &item2;
+    item2.next = &item3;
+    item3.next = NULL;
     
     // struct list_item *list = malloc(sizeof(struct list_item));
 
