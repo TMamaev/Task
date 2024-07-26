@@ -47,6 +47,11 @@ void ft_lstadd_back(t_list **lst, t_list *new)
 {
     if (!new)
         return;
+    if (*lst->next == NULL)
+    {
+        *lst = new;
+        return;
+    }
     while (*lst->next != NULL)
         *lst = *lst->next;
     *lst->next = new;
@@ -61,6 +66,32 @@ void ft_lstadd_front(t_list **lst, t_list *new)
     new->next = *lst;
     *lst = new;
 }
+
+void ft_lstdelone(t_list *lst, void (*del)(void *))
+{
+    lst = *del;
+    free(*lst);
+}
+
+void ft_lstclear(t_list **lst, void (*del)(void *))
+{
+    while(*lst->next != NULL)
+    {
+        *lst = *del;
+        free(*lst);
+        *lst = *lst->next;
+    }
+}
+
+void ft_lstiter(t_list *lst, void (*f)(void *))
+{
+    while (lst->next != NULL)
+    {
+        lst = *f;
+        lst = lst->next;
+    }
+}
+
 
 
 int main()
