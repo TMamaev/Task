@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct list_item
 {
@@ -42,23 +43,6 @@ t_list *ft_lstnew(int content)
     return new;
 }
 
-// Добавить новый элемент в конец списка
-void ft_lstadd_back(t_list **lst, t_list *new)
-{
-    if (!new)
-        return;
-    if (*lst->next == NULL)
-    {
-        *lst = new;
-        return;
-    }
-    while (*lst->next != NULL)
-        *lst = *lst->next;
-    *lst->next = new;
-
-}
-
-
 void ft_lstadd_front(t_list **lst, t_list *new)
 {
     if (!new)
@@ -69,17 +53,17 @@ void ft_lstadd_front(t_list **lst, t_list *new)
 
 void ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-    lst = *del;
-    free(*lst);
+    del(lst);
+    free(lst);
 }
 
 void ft_lstclear(t_list **lst, void (*del)(void *))
 {
-    while(*lst->next != NULL)
+    while((*lst)->next != NULL)
     {
-        *lst = *del;
+        del(lst);
         free(*lst);
-        *lst = *lst->next;
+        *lst = (*lst)->next;
     }
 }
 
@@ -87,41 +71,40 @@ void ft_lstiter(t_list *lst, void (*f)(void *))
 {
     while (lst->next != NULL)
     {
-        lst = *f;
+        f(lst);
         lst = lst->next;
     }
 }
 
-
+// Добавить новый элемент в конец списка
+void ft_lstadd_back(t_list **lst, t_list *new)
+{
+    if (!new)
+        return ;
+    if (*lst == NULL)
+    {
+        (*lst)->next = new;
+        return ;
+    }
+    while ((*lst)->next != NULL)
+    {
+        *lst = (*lst)->next;
+    }
+    (*lst)->next = new;
+}
 
 int main()
 {
-    lst_last(NULL);
+    t_list *new;
+    t_list **lst;
+    t_list *head;
 
-    struct list_item *head;
-    struct list_item item;
-    struct list_item item2;
-    struct list_item item3;
-    struct list_item *ptr;
+    head = malloc(sizeof(t_list));
+    head->data = 2;
+    *lst = head;
+    new = malloc(sizeof(t_list));
+    new->data = 2;
+    ft_lstadd_back(lst, new);
 
-    head = &item;
-    head->next = &item2;
-    item2.next = &item3;
-    item3.next = NULL;
-    
-    // struct list_item *list = malloc(sizeof(struct list_item));
-
-    // while (ptr != NULL)
-    // {
-    //     scanf("%d", &(ptr->data));
-    //     ptr = ptr->next;
-    // }
-    
-    // printf("%d", length(head));
-    //for (int i = 6; i != 0; i--)
-    //{
-    //    scanf("%d", &(head->data));
-    //    head = head->next;
-    //}
     return 0;
 }
