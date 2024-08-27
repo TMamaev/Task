@@ -43,12 +43,13 @@ t_list *ft_lstnew(int content)
     return new;
 }
 
-void ft_lstadd_front(t_list **lst, t_list *new)
+int ft_lstadd_front(t_list *head, t_list *new)
 {
     if (!new)
         return ;
-    new->next = *lst;
-    *lst = new;
+    new->next = head;
+    head = new;
+    return head;
 }
 
 void ft_lstdelone(t_list *lst, void (*del)(void *))
@@ -92,46 +93,112 @@ void ft_lstadd_back(t_list **lst, t_list *new)
     }
     (*lst)->next = new;
 }
-
-struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
-    struct ListNode *copy_next1 = list1->next;
-    struct ListNode *copy_next2 = list2->next;
-    while (list1 != NULL || list2 != NULL)
+ 
+struct List_item* mergeTwoLists(t_list *list1, t_list *list2) {
+    t_list *copy_head;
+    t_list *list_ans;
+    copy_head = list_ans;
+    while (list1 != NULL && list2 != NULL)
     {
-        if (list1->next != NULL)
-            copy_next1 = list1->next;
-        else 
-            copy_next1 = NULL;
-        if (list2->next != NULL)
-            copy_next2 = list2->next;
-        else 
-            copy_next2 = NULL;
-        if (list1->val < list2->val)
+        if (list1 == NULL)
         {
-            list1->next = list2;
-            list1 = copy_next1;
+            list_ans->data = list2->data;
+            list1 = list2->next;
+        }
+        else if (list2 == NULL)
+        {
+            list_ans->data = list1->data;
+            list1 = list1->next;
+        }
+        else if (list1->data <= list2->data)
+        {
+            list_ans->data = list1->data;
+            list1 = list1->next;
         }
         else
         {
-            list2->next = list1;
-            list2 = copy_next2;
+            list_ans->data = list2->data;
+            list1 = list2->next;
         }
+        t_list *copy_next = list_ans->next;
+        t_list *list_ans;
+        copy_next = list_ans;
     }
-    return list2;
+    
+    return copy_head;
+}
+
+struct List_item* removeNthFromEnd(t_list *head, int n) {
+    t_list *copy_head = head;
+    t_list *copy_next = head->next;
+    int l = 0;
+
+    while (head != NULL)
+    {
+        head = head->next;
+        l++;
+    }
+    head = copy_head;
+    if (l == n)
+    {
+        free(head);
+        return copy_next;
+    }
+    l = l - n;
+    while (l > 1)
+    {
+        l--;
+        head = head->next;
+    }
+    if (n != 1)
+    {
+        copy_next = (head->next)->next;
+    }
+    free(head->next);
+    if (n != 1)
+    {
+        head->next = copy_next;
+    }
+    else
+    {
+        head->next = NULL;
+    }
+    return copy_head;
+}
+
+struct stack
+{
+    struct t_list *head;
+};
+
+void push(t_list* head, int n)
+{
+    t_list *new = malloc(sizeof(t_list));
+    new->data = n;
+    head = ft_lstadd_front(head, new);
+    while (head != NULL)
+    {
+        printf("%d", head->data);
+        head = head->next;
+    }
 }
 
 int main()
 {
-    t_list *new;
-    t_list **lst;
-    t_list *head;
-
-    head = malloc(sizeof(t_list));
+    t_list *head = malloc(sizeof(t_list));
     head->data = 2;
-    *lst = head;
-    new = malloc(sizeof(t_list));
-    new->data = 2;
-    ft_lstadd_back(lst, new);
+    t_list *head1 = malloc(sizeof(t_list));
+    head1->data = 1;
+    head->next = head1;
+    head1->next = NULL;
+    int n = 1;
 
+
+    push(head, n);
+    while (head != NULL)
+    {
+        printf("%d", head->data);
+        head = head->next;
+    }
     return 0;
 }
