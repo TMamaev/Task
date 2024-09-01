@@ -43,13 +43,12 @@ t_list *ft_lstnew(int content)
     return new;
 }
 
-int ft_lstadd_front(t_list *head, t_list *new)
+void ft_lstadd_front(t_list *head, t_list *new)
 {
     if (!new)
         return ;
     new->next = head;
     head = new;
-    return head;
 }
 
 void ft_lstdelone(t_list *lst, void (*del)(void *))
@@ -171,16 +170,27 @@ struct stack
     struct t_list *head;
 };
 
-void push(t_list* head, int n)
+void push(t_list** head, int n)
 {
     t_list *new = malloc(sizeof(t_list));
     new->data = n;
-    head = ft_lstadd_front(head, new);
-    while (head != NULL)
+    new->next = *head;
+    *head = new;
+}
+
+void pop(t_list** head)
+{
+    t_list *copy_head = malloc(sizeof(t_list));
+    t_list *copy_next = malloc(sizeof(t_list));
+    copy_head = *head;
+    while ((*head)->next != NULL)
     {
-        printf("%d", head->data);
-        head = head->next;
+        copy_next = (*head)->next;
+        *head = (*head)->next;
     }
+    free(*head);
+    copy_next = NULL;
+    head = copy_head;
 }
 
 int main()
@@ -189,12 +199,15 @@ int main()
     head->data = 2;
     t_list *head1 = malloc(sizeof(t_list));
     head1->data = 1;
-    head->next = head1;
+    head->next = NULL;
     head1->next = NULL;
     int n = 1;
+    
 
+    
 
-    push(head, n);
+    push(&head, n);
+    pop(&head);
     while (head != NULL)
     {
         printf("%d", head->data);
