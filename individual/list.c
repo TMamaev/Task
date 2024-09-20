@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct list_item
 {
@@ -165,83 +166,72 @@ struct List_item* removeNthFromEnd(t_list *head, int n) {
     return copy_head;
 }
 
-typedef struct s_stack
+typedef struct list_stack
 {
-    struct t_list *head;
+    char data;
+    struct list_stack *next;
 } t_stack;
 
-void push(t_stack** head, int n)
+void push(t_stack** list, char n)
 {
-    t_list *new;
+    t_stack *new = malloc(sizeof(t_stack));
     
-    if (!head || (new = malloc(sizeof(t_list))) == NULL)
+    if (!list || (new = malloc(sizeof(t_stack))) == NULL)
         return ;
-    
+
     new->data = n;
-    new->next = *head;
-    *head = new;
+    new->next = *list;
+    *list = new;
+    // printf("%d", head1->data);
 }
 
-void pop(t_list** head)
+void pop(t_stack** list)
 {
-    t_list *copy_head;
+    t_stack *copy_head;
 
-    if (!head || !*head)
+    if (!list || !*list)
         return ;
     
-    copy_head = *head;
-    *head = (*head)->next;
+    copy_head = *list;
+    *list = (*list)->next;
     free(copy_head);
 }
 
 int main()
-{
-    t_list *head = NULL;
+{   
+    char s[] = "([])(){}";
 
-    // push(&head, 1);
-    // pop(&head);
-    // while (head != NULL)
-    // {
-    //    printf("%d", head->data);
-    //    head = head->next;
-    //}
-    int ans = 0;
-    char s[] = "(}";
-    size_t size = sizeof(s)/sizeof(char);
-    size -= 2;
-    for (int i = 0; i < size;)
+    int n = 0;
+    for (int i = 0; s[i]; i++)
+        n++;
+    
+    if (n % 2 != 0)
     {
-        if ((s[i] == '(' && s[size] == ')') || 
-        (s[i] == '[' && s[size] == ']') || 
-        (s[i] == '{' && s[size] == '}'))
+        printf("false");
+        return 0;
+    }
+
+    t_stack *list = malloc(sizeof(t_stack));
+    for (int i = 0; i < n; i++){
+        if (s[i] == '(' || s[i] == '[' || s[i] == '{')
         {
-            ans = 1;
-            size--;
-            i++;
+            push(&list, s[i]);
+            printf("%c", list->data);
         }
-        else if ((s[i] == '(' && s[i + 1] == ')') || 
-        (s[i] == '[' && s[i + 1] == ']') || 
-        (s[i] == '{' && s[i + 1] == '}'))
+        else
         {
-            ans = 1;
-            i += 2;
-        }
-        else if ((s[size - 1] == '(' && s[size] == ')') || 
-        (s[size - 1] == '[' && s[size] == ']') || 
-        (s[size - 1] == '{' && s[size] == '}'))
-        {
-            ans = 1;
-            size -= 2;
-        }
-        else 
-        {
-            ans = 0;
-            size = i;
+            if ((s[i] == (list->data + 1)) || (s[i] == (list->data + 2)))
+            {
+                pop(&list);
+                printf("0");
+            }
+            else 
+            {
+                printf("false");
+                return 0;
+            }
         }
     }
-    if (ans)
-        printf("true");
-    else   
-        printf("false");
+    printf("true");
     return 0;
 }
