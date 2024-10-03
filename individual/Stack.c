@@ -60,21 +60,6 @@ int valid_paren()
     return 0;
 }
 
-typedef struct TreeNode {
-    int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
-} t_n;
-
-int* preorderTraversal(struct TreeNode* root, int* returnSize) {
-    if (root == NULL)
-        return 0;
-    returnSize++;
-    preorderTraversal(root->right, returnSize);
-    preorderTraversal(root->left, returnSize);
-    return 0;
-}
-
 void pop(t_stack** list)
 {
     t_stack *copy_head;
@@ -117,6 +102,55 @@ int isPalindrome(t_stack* head) {
         head = head->next;
     }
     return 1;
+}
+
+int evalRPN(char** tokens, int tokensSize) {
+    long res = 0;
+    printf("%d     ", tokensSize);
+    t_stack *stack = malloc(sizeof(t_stack));
+    stack->data = strtol(tokens[0], NULL, 10); 
+    stack->next = NULL;
+    t_stack *c_n = stack->next;
+    for (int i = 1; i < tokensSize; i++)
+    {
+        printf("%d ", stack->data);
+        if (strcmp(tokens[i], "+") == 0)
+        {
+            stack->next->data = stack->data + stack->next->data;
+            t_stack *copy = stack;
+            stack = stack->next;
+            free(copy);
+        } 
+        else if (strcmp(tokens[i], "-") == 0)
+        {
+            stack->next->data = stack->next->data - stack->data;
+            t_stack *copy = stack;
+            stack = stack->next;
+            free(copy);
+        }
+        else if (strcmp(tokens[i], "/") == 0)
+        {
+            stack->next->data = stack->next->data / stack->data;
+            t_stack *copy = stack;
+            stack = stack->next;
+            free(copy);
+        }
+        else if (strcmp(tokens[i], "*") == 0)
+        {
+            stack->next->data = stack->next->data * stack->data;
+            t_stack *copy = stack;
+            stack = stack->next;
+            free(copy);
+        }
+        else 
+        {
+            printf("  i = %d   ", i);
+            long n = strtol(tokens[i], NULL, 10); 
+            push(&stack, n);
+        }
+    }
+    res = stack->data;
+    return res;
 }
 
 int main()
