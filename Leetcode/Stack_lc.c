@@ -226,6 +226,49 @@ int calculate(char* s) {
     return res;
 }
 
+int longestValidParentheses(char* s) {
+    int start;
+    int check1 = 0;
+    int check2 = 0;
+    int n = 0;
+    int max = 0;
+    int long1 = 0;
+    for (int i = 0; s[i]; i++)
+        n++;
+
+    t_stack *list = malloc(sizeof(t_stack));
+    for (int i = 0; i < n; i++){
+        if (s[i] == '(' || s[i] == '[' || s[i] == '{')
+        {
+            push(&list, s[i]);
+            check1++;
+            long1++;
+        }
+        else
+        {
+            if ((s[i] == (list->data + 1)) || (s[i] == (list->data + 2)))
+            {
+                pop(&list);
+                check2++;
+                long1++;
+            }
+            else 
+            {
+                if (long1 > max)
+                    max = long1;
+                long1 = 0;
+            }
+        }
+    }
+    if (check1 != check2)
+    {
+        long1 = long1 - (check1 - check2);
+    }
+    if (long1 > max)
+        max = long1;
+    return max;
+}
+
 int main()
 {   
     t_stack *head = malloc(sizeof(t_stack));
