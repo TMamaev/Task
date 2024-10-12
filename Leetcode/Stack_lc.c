@@ -191,8 +191,6 @@ int calculate(char* s) {
             t_stack *copy = stack;
             stack = stack->next;
             free(copy);
-            
-            stack = stack->next;
         }
         else if (strcmp(&s[i], "*") == 0)
         {
@@ -200,7 +198,6 @@ int calculate(char* s) {
             t_stack *copy = stack;
             stack = stack->next;
             free(copy);
-            stack = stack->next;
         }
     }
     for (int i = 0; strcmp(&s[i], "\0") != 0; i++)
@@ -211,7 +208,6 @@ int calculate(char* s) {
             t_stack *copy = stack;
             stack = stack->next;
             free(copy);
-            stack = stack->next;
         }
         else if (strcmp(&s[i], "-") == 0)
         {
@@ -219,7 +215,7 @@ int calculate(char* s) {
             t_stack *copy = stack;
             stack = stack->next;
             free(copy);
-            stack = stack->next;
+
         }
     }
     res = stack->data;
