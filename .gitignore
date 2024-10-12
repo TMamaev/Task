@@ -3,6 +3,8 @@ replit.nix
 .ccls-cache
 .vscode
 
+*.stackdump
+
 # Prerequisites
 *.d
 
