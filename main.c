@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 // #include <binary_ops.h>
 // #include "include/binary_ops.h"
 
@@ -218,7 +219,7 @@ void print_matrix(int** matrix, size_t rows, size_t cols)
 // 0 0 1 1
 // 0 0 0 1
 
-int main(int argc, char** argv)
+int main_struct(int argc, char** argv)
 {
     struct s_person
     {
@@ -267,6 +268,71 @@ int main(int argc, char** argv)
 
    return 0;
 }
+
+// int main(void)
+// {
+//     unsigned int a = 0xDEADBEAF;
+//     unsigned int b = 0xBAADDAAD;
+
+//     print_int(a);
+//     putchar('\n');
+//     print_int(b);
+//     putchar('\n');
+//     printf("%d", hamming_distance(a, b));
+//     putchar('\n');
+
+//     return 0;
+// }
+
+
+// 0 1 2 3 4 - idx
+// 1 2 3 4 5
+// i = 0    size = 4    arr[0] <-> arr[4]
+// i = 1    size = 3    arr[1] <-> arr[3]
+// i = 2    size = 2
+
+void reverse(int *arr, int size)
+{
+    int copy;
+
+    size--;
+    for (int i = 0; i < size; i++, size--)
+    {
+        copy = arr[i];
+        arr[i] = arr[size];
+        arr[size] = copy;
+    } 
+}
+
+// 1 2 3 4 5
+void reverse_ptr(int *arr, int size)
+{
+    int copy;
+    int *pe = arr + size - 1; // &arr[size - 1];
+
+    // for (int i = 0; i < size; i++, size--)
+    for (; arr < pe; arr++, pe--)
+    {
+        copy = *arr;
+        *arr = *pe;
+        *pe = copy;
+    }
+}
+
+int main()
+{
+    int size = 6;
+    int* arr = malloc(size * sizeof(int));
+
+    for (int i = 0; i < size; i++)
+        scanf("%d", &arr[i]);
+    reverse(arr, size);
+    for (int i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    free(arr);
+    return 0;
+}
+
 
 // gcc -I ./include main.c individual/binary_ops.c -o main
 // warning
