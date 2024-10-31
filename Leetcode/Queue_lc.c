@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 typedef struct s_queue
 {
@@ -9,16 +10,22 @@ typedef struct s_queue
 
 void enqueue(t_queue** head, int n)
 {
-    t_queue *copy = *head;
+    
     t_queue *new = malloc(sizeof(t_queue));
     new->data = n;
     new->next = NULL;
-    while ((*head)->next != NULL)
+    if ((*head) != NULL)
     {
-        *head = (*head)->next;
+        t_queue *copy = *head;
+        while ((*head)->next != NULL)
+        {
+            *head = (*head)->next;
+        }
+        (*head)->next = new;
+        *head = copy;
     }
-    (*head)->next = new;
-    *head = copy;
+    else
+        *head = new;
 }
 
 void dequeue(t_queue** head)
@@ -32,73 +39,82 @@ void dequeue(t_queue** head)
 int timeRequiredToBuy(int* tickets, int ticketsSize, int k) {
     int t = 0;
     t_queue *queue = NULL;
+    
     for (int i = 0; i < ticketsSize; i++)
     {
         enqueue(&queue, tickets[i]);
     }
     for (int i = 0; tickets[k] != 0; i++)
     {
+        tickets[i]--;
+        if (queue->data != 0)
+        {
+            enqueue(&queue, tickets[i]);
+            t++;
+        }
         dequeue(&queue);
-        enqueue(&queue, tickets[i]);
-        if (i == k)
-            k--;
-        t++;
-        if (i == ticketsSize)
+        
+        
+        if (i == ticketsSize - 1)
             i = 0;
     }
     return t;
 }
 
+// "level"
+// l == l l != e l != v l != e l == l
+// e != l e == e e != v e == e e != l
+// v != l v != e v == v v != e v != l
+// !!!!!
+// l == l l != e l != v l != e l == l
+// e != l e == e e != v e == e e != l
+// 2 2 1 2 2
+int *size(char *s, int *sizeArray)
+{
+    *sizeArray = 127;
+    int *size = malloc(127 * sizeof(int));
+    bzero(size, 127);
+    
+    for (int i = 0; i < strlen(s); i++)
+    {
+        size[s[i]]++;
+    }
+    return size;
+}
+
+// "level"   size 'e' = ?
+// 
+
 // https://leetcode.com/problems/first-unique-character-in-a-string/
 int firstUniqChar(char* s) {
-    int ans;
-    int check = 0;
-    int n = 0;
-
-    for (int i = 0; strcmp(&s[i], "\0") != 0; i++)
-        n++;
+    int ans = -1;
+    int n = strlen(s);
     
-    int save[n];
-    for (int i = 0; i < n; i++)
-        save[i] = 0;
-    for (int i = 0; i < n; i++)
+    int *size = malloc(127 * sizeof(int));
+    bzero(size, 508);
+    
+    for (int i = 0; i < strlen(s); i++)
     {
-        for (int k = 0; k < n; k++)
+        size[s[i]]++;
+        printf("%d ", size[108]);
+    }
+    for (int i = 0; i < n && ans == -1; i++)
+    {
+        if (size[s[i]] == 1)
         {
-            if (strcmp(&s[i], &s[k]) == 0)
-            {
-                save[i]++;
-            }
+            ans = i; 
         }
     }
-    for (int i = 0; i < n && check != 1; i++)
-    {
-        if (save[i] == 1)
-        {
-
-            check = 1;
-            ans = i;
-        }
-    }
-    if (check)
-        return ans;
-    else return -1;
+    return ans;
 }
 
 int main()
 {
-    t_queue *head = malloc(sizeof(t_queue));
-    head->data = 1;
-    t_queue *head2 = malloc(sizeof(t_queue));
-    head2->data = 3;
-    head2->next = NULL;
-    head->next = head2;
-    enqueue(&head, 2);
-    dequeue(&head);
-    while (head != NULL)
-    {
-        printf("%d ", head->data);
-        head = head->next;
-    }
+    const char *s = "lleett";
+    // int tickets[4] = {5, 1, 1, 1};
+    // enqueue(&head, 2);
+    // dequeue(&head);
+    int pos = firstUniqChar(s);
+    printf("%d", pos);
     return 0;
 }
