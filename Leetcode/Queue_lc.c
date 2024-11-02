@@ -72,8 +72,8 @@ int timeRequiredToBuy(int* tickets, int ticketsSize, int k) {
 int *size(char *s, int *sizeArray)
 {
     *sizeArray = 127;
-    int *size = malloc(127 * sizeof(int));
-    bzero(size, 127);
+    int *size = malloc(*sizeArray * sizeof(int));
+    bzero(size, *sizeArray * sizeof(int));
     
     for (int i = 0; i < strlen(s); i++)
     {
@@ -89,14 +89,14 @@ int *size(char *s, int *sizeArray)
 int firstUniqChar(char* s) {
     int ans = -1;
     int n = strlen(s);
+    int sizearray = 127;
     
-    int *size = malloc(127 * sizeof(int));
-    bzero(size, 508);
+    int *size = malloc(sizearray * sizeof(int));
+    bzero(size, sizearray * sizeof(int));
     
     for (int i = 0; i < strlen(s); i++)
     {
         size[s[i]]++;
-        printf("%d ", size[108]);
     }
     for (int i = 0; i < n && ans == -1; i++)
     {
