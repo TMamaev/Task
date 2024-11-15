@@ -19,16 +19,6 @@ t_btree *btree_new(int n, t_btree *left, t_btree *right)
     return tree;
 }
 
-//       6
-//      / \
-//     2   9
-//    /     \
-//   1       11
-
-// preorder
-// inorder
-// postorder traversal
-
 typedef struct list_stack
 {
     t_btree *root;
@@ -59,14 +49,8 @@ void pop(t_stack** list)
     free(copy_head);
 }
 
-
-//       6
-//      / \
-//     2   9
-//    /     \
-//   1       11
-
-void norderTraversal(struct s_btree* root)
+// https://leetcode.com/problems/binary-tree-inorder-traversal/?envType=problem-list-v2&envId=tree
+void InorderTraversal(struct s_btree* root)
 {
     if (root == NULL)
         return ;
@@ -97,8 +81,7 @@ void inorderTraversal(struct s_btree* root) {
     }
 }
 
-
-
+// https://leetcode.com/problems/symmetric-tree/?envType=problem-list-v2&envId=tree
 int Symmetric(t_btree* l, t_btree* r)
 {
     if (l == NULL || r == NULL) 
@@ -115,7 +98,7 @@ int isSymmetric(t_btree* root) {
     return Symmetric(root->left, root->right);
 }
 
-
+// https://leetcode.com/problems/same-tree/description/?envType=problem-list-v2&envId=tree
 int isSameTree(t_btree* p, t_btree* q) {
     if (p == NULL || q == NULL) 
     { 
@@ -125,8 +108,51 @@ int isSameTree(t_btree* p, t_btree* q) {
     { 
         return 0;
     }
-    return (isSameTree(p->left, q->left) && isSameTree(p->right, q->right));
-    
+    return (isSameTree(p->left, q->left) && isSameTree(p->right, q->right));   
+}
+
+// https://leetcode.com/problems/maximum-depth-of-binary-tree/?envType=problem-list-v2&envId=tree
+int maxDepth(t_btree* root) {
+    if (root == NULL) 
+    { 
+        return 0;
+    }
+    int left = maxDepth(root->left);
+    int right = maxDepth(root->right);
+    if (left > right)
+    {
+        return left + 1;
+    }
+    else 
+    {
+        return right + 1;
+    }
+}
+
+// https://leetcode.com/problems/minimum-depth-of-binary-tree/?envType=problem-list-v2&envId=tree
+int minDepth(t_btree* root) {
+    if (root == NULL) 
+    { 
+        return 0;
+    }
+    int left = minDepth(root->left);
+    int right = minDepth(root->right);
+    if (left == 0) 
+    {
+        return right + 1;
+    }
+    if (right == 0)
+    {
+        return left + 1;
+    } 
+    if (left <= right && left != 0)
+    {
+        return left + 1;
+    }
+    else
+    {
+        return right + 1;
+    }
 }
 
 int main()
