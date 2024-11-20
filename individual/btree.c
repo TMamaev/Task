@@ -81,6 +81,33 @@ void inorderTraversal(struct s_btree* root) {
     }
 }
 
+int* inorderTraversal(t_btree* root, int* returnSize) {
+    t_stack *stack = NULL;
+    int *ans = malloc(sizeof(int));
+    t_btree *temp = NULL;
+    int i = 0;
+
+    while (root || stack != NULL)
+    {
+        while (root != NULL)
+        {
+            push(&stack, root);
+            root = root->left;
+        }
+        
+        temp = stack->root;
+        pop(&stack);
+        if (temp != NULL)
+        {
+            (*returnSize)++;
+            ans[i] = root->data;
+            i++;
+            root = temp->right;
+        }
+    }
+    return ans;
+}
+
 // https://leetcode.com/problems/symmetric-tree/?envType=problem-list-v2&envId=tree
 int Symmetric(t_btree* l, t_btree* r)
 {
@@ -153,6 +180,34 @@ int minDepth(t_btree* root) {
     {
         return right + 1;
     }
+}
+
+// https://leetcode.com/problems/binary-search/
+int search(int* nums, int numsSize, int target) {
+    int ans = -1;
+    int left = 0, right = numsSize - 1, mid = right / 2;
+    if (target > nums[right] || target < nums[left]) return -1;
+    do
+    {       
+        if (target == nums[mid])
+            return mid;
+        else if (target < nums[mid])
+        {
+            right = mid;
+            mid = left + (right - left) / 2;;
+        }
+        else if (target > nums[mid])
+        {
+            left = mid;
+            if (left == 0) left++;
+            mid = left + (right - left) / 2;;
+        }  
+    } while (left + 1 != right && left != right);
+    if (target == nums[right])
+        return right;
+    if (target == nums[left])
+        return left;
+    return -1;
 }
 
 int main()
