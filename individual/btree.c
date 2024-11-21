@@ -184,29 +184,26 @@ int minDepth(t_btree* root) {
 
 // https://leetcode.com/problems/binary-search/
 int search(int* nums, int numsSize, int target) {
-    int ans = -1;
-    int left = 0, right = numsSize - 1, mid = right / 2;
+    int left = 0;
+    int right = numsSize - 1;
+    int mid = right / 2;
     if (target > nums[right] || target < nums[left]) return -1;
-    do
-    {       
+    while (left <= right)
+    {
+        
         if (target == nums[mid])
             return mid;
-        else if (target < nums[mid])
-        {
-            right = mid;
-            mid = left + (right - left) / 2;;
-        }
         else if (target > nums[mid])
         {
-            left = mid;
-            if (left == 0) left++;
-            mid = left + (right - left) / 2;;
-        }  
-    } while (left + 1 != right && left != right);
-    if (target == nums[right])
-        return right;
-    if (target == nums[left])
-        return left;
+            left = mid + 1;
+            mid = left + (right - left) / 2;
+        }
+        else
+        {
+            right = mid - 1;
+            mid = left + (right - left) / 2;
+        }
+    }
     return -1;
 }
 
