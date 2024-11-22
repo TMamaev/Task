@@ -232,6 +232,17 @@ int sumOfLeftLeaves(t_btree* root) {
     return res;
 }
 
+// https://leetcode.com/problems/count-complete-tree-nodes/?envType=problem-list-v2&envId=tree
+int countNodes(t_btree* root) {
+    int res = 0;
+    if (root == NULL) return 0;
+    res++;
+    res += countNodes(root->left);
+    res += countNodes(root->right);
+    
+    return res;
+}
+
 int main()
 {
     t_btree *root = btree_new(6,
