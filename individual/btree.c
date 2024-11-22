@@ -187,7 +187,6 @@ int search(int* nums, int numsSize, int target) {
     int left = 0;
     int right = numsSize - 1;
     int mid = right / 2;
-    if (target > nums[right] || target < nums[left]) return -1;
     while (left <= right)
     {
         
@@ -196,15 +195,41 @@ int search(int* nums, int numsSize, int target) {
         else if (target > nums[mid])
         {
             left = mid + 1;
-            mid = left + (right - left) / 2;
+            mid = (right + left) / 2;
         }
         else
         {
             right = mid - 1;
-            mid = left + (right - left) / 2;
+            mid = (right + left) / 2;
         }
     }
     return -1;
+}
+
+// https://leetcode.com/problems/sum-of-left-leaves/?envType=problem-list-v2&envId=tree
+int left(t_btree* root)
+{
+    if (root != NULL && root->left == NULL && root->right == NULL)
+        return 1;
+    return 0;
+}
+
+int sumOfLeftLeaves(t_btree* root) {
+    int res = 0;
+    if (root == NULL) 
+    {
+        return 0;
+    }
+    if (left(root->left))
+    {
+        res += root->left->data;
+    }
+    else
+    {
+        res += sumOfLeftLeaves(root->left);
+    }
+    res += sumOfLeftLeaves(root->right);
+    return res;
 }
 
 int main()
