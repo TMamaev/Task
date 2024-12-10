@@ -207,20 +207,14 @@ int search(int* nums, int numsSize, int target) {
 }
 
 // https://leetcode.com/problems/sum-of-left-leaves/?envType=problem-list-v2&envId=tree
-int left(t_btree* root)
-{
-    if (root != NULL && root->left == NULL && root->right == NULL)
-        return 1;
-    return 0;
-}
-
 int sumOfLeftLeaves(t_btree* root) {
     int res = 0;
+    
     if (root == NULL) 
     {
         return 0;
     }
-    if (left(root->left))
+    if (root->left != NULL && root->left->left == NULL && root->left->right == NULL)
     {
         res += root->left->data;
     }
@@ -231,6 +225,8 @@ int sumOfLeftLeaves(t_btree* root) {
     res += sumOfLeftLeaves(root->right);
     return res;
 }
+
+
 
 // https://leetcode.com/problems/count-complete-tree-nodes/?envType=problem-list-v2&envId=tree
 int countNodes(t_btree* root) {
