@@ -38,35 +38,45 @@ void dequeue(t_queue** head)
 
 int nearestExit(char** maze, int mazeSize, int* mazeColSize,
                 int* entrance, int entranceSize) {
-    int x = entrance[1];
+     int x = entrance[1];
     int y = entrance[0];
     t_queue *head;
     t_queue *copy;
     enqueue(&head, x, y, 0);
     while (head->y != 0 && head->x != 0 && head->y !=mazeSize && head->x != *mazeColSize)
     {
+        x = head->x;
+        y = head->y;
         copy = head;
         while (head->next != NULL)
         {
             head = head->next;
         }
-        if (*maze[head->y][head->x + 1] == ".")
+        if (*(maze+(*mazeColSize * y + x + 2)) == ".")
         {
             enqueue(&head, x + 1, y, head->move + 1);
         }
-        if (*maze[head->y][head->x - 1] == ".")
+        if (*(maze+(*mazeColSize * y + x)) == ".")
         {
             enqueue(&head, x - 1, y, head->move + 1);
         }
-        if (*maze[head->y + 1][head->x] == ".")
+        if (*(maze+(*mazeColSize * (y + 1) + x + 1)) == ".")
         {
             enqueue(&head, x, y + 1, head->move + 1);
         }
-        if (*maze[head->y - 1][head->x + 1] == ".")
+        if (*(maze+(*mazeColSize * (y - 1) + x + 1)) == ".")
         {
             enqueue(&head, x, y - 1, head->move + 1);
         }
         dequeue(&head);
         head = copy;
     }
+    int min  = 9999999;
+    while (head != NULL)
+    {
+        if (head->move < min) 
+            min = head->move;
+        head = head->next;
+    }
+    return min;
 }
