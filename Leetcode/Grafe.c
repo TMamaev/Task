@@ -52,6 +52,8 @@ int nearestExit(char** maze, int mazeSize, int* mazeColSize,
         {
             head = head->next;
         }
+        x = head->x;
+        y = head->y;
         if (*(maze+(*mazeColSize * y + x + 2)) == ".")
         {
             enqueue(&head, x + 1, y, head->move + 1);
