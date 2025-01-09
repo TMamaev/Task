@@ -1,19 +1,22 @@
 #include <stdbool.h>
 
-bool target1(int x, int y, int target)
+int gcd(int x, int y)
 {
-    if (x - y == target || y - x == target || x + y == target)
-        return true;
-    if (x == 0 || y == 0)
-        return false;
-
-    if (x > y)
-        return target1(x, x % y, target);
-    return target1(y % x, y, target);
+    if (x < y)
+    {
+        int help = x;
+        x = y; 
+        y = help;
+    }
+    if (y == 0)
+        return x;
+    else
+        return gcd(y, x - y);
 }
 
 bool canMeasureWater(int x, int y, int target) {
     if (target > x + y)
         return false;
-    return target1(x, y, target);
+
+    return ((target % gcd(x, y)) == 0);
 }
