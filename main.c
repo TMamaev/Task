@@ -218,26 +218,38 @@ void print_matrix(int** matrix, size_t rows, size_t cols)
 // 0 0 1 1
 // 0 0 0 1
 
-int main(int argc, char** argv)
+// -o file
+// -c
+// -f num
+// ./main.exe -c
+int main(int argc, char** argv, char **envp)
+// int main(int argc, char** argv)
 {
-    struct s_person
+    int i = 0;
+
+    for (; i < argc; i++)
     {
-        int age;
-        char sex;
-        char *address;
-    } p1;
-    
-    p1.age = 10;
+        if (strcmp(argv[i], "-f") == 0)
+        {
+            printf("square argv[%d] = %d \n", i + 1, atoi(argv[i + 1]) * atoi(argv[i + 1]));
+            i++;
+        }
+        else 
+            printf("argv[%d] = \"%s\"\n", i, argv[i]);
+    }
+// #include <getopt.h>
+// getopt
 
-    struct s_person p2;
-    p2.age = 20;
+    // char **walker = envp;
+    // // [ "", "", NULL ]
 
-    typedef struct s_person t_person;
-
-    t_person *p3 = malloc(sizeof(t_person));
-    p3->age = 30;
-
-    int a;
+    // i = 0;
+    // while (*walker)
+    // {
+    //     printf("envp[%d] = \"%s\"\n", i++, *walker);
+    //     walker++;
+    // }
+    // getenv("USER");
 
     // if (argc < 3)
     //     return -1;
