@@ -3,18 +3,14 @@
 
 typedef struct s_queue
 {
-    int x;
-    int y;
-    int move;
+    int data;
     struct s_queue *next;
 } t_queue;
 
-void enqueue(t_queue** head, int x, int y, int move)
+void enqueue(t_queue** head, int n)
 {
     t_queue *new = malloc(sizeof(t_queue));
-    new->x = x;
-    new->y = y;
-    new->move = move;
+    new->data = n;
     new->next = *head;
     *head = new;
 }
@@ -34,50 +30,23 @@ void dequeue(t_queue** head)
     *head = copy_next;
     (*head)->next = NULL;
     *head = copy;
-    
 }
 
-int nearestExit(char** maze, int mazeSize, int* mazeColSize,
-                int* entrance, int entranceSize) {
-    int x = entrance[1];
-    int y = entrance[0];
-    t_queue *head;
-    enqueue(&head, x, y, 0);
-    while (head->y != 0 && head->x != 0 && head->y !=mazeSize && head->x != *mazeColSize)
-    {
-        while (head->next != NULL)
-        {
-            head = head->next;
-        }
-
-        x = head->x;
-        y = head->y;
-        if (maze[y][x + 1] == ".")
-        {
-            enqueue(&head, x + 1, y, head->move + 1);
-        }
-        if (maze[y][x - 1] == ".")
-        {
-            enqueue(&head, x - 1, y, head->move + 1);
-        }
-        if (maze[y + 1][x] == ".")
-        {
-            enqueue(&head, x, y + 1, head->move + 1);
-        }
-        if (maze[y - 1][x] == ".")
-        {
-            enqueue(&head, x, y - 1, head->move + 1);
-        }
-        if (head != NULL)
-            dequeue(&head);
-        else return -1;
-    }
-    int min  = 9999999;
+int main()
+{
+    t_queue *head = malloc(sizeof(t_queue));
+    head->data = 1;
+    t_queue *head2 = malloc(sizeof(t_queue));
+    head2->data = 3;
+    head2->next = NULL;
+    head->next = head2;
+    enqueue(&head, 2);
+    dequeue(&head);
     while (head != NULL)
     {
-        if (head->move < min) 
-            min = head->move;
+        printf("%d ", head->data);
         head = head->next;
     }
-    return min;
+
+    return 0;
 }
