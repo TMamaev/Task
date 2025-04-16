@@ -1,30 +1,44 @@
 int lengthOfLongestSubstring(char* s) 
 {
-    int size = sizeof(s);
-    int *ASCII[127] = {0};
+    int size;
+    for (int i = 0; s[i]; i++)
+        size++;
+    int ASCII[256]  = {0};
     int max = 0;
 
     int left = 0;
-    int right = 1;
-    for (; right < size; right++)
+    int right = 0;
+    int ASCII_value = (int)s[right];
+    if (ASCII_value > 0)
+        max = 1;
+    for (; right < size;)
     {
-        if (ASCII[s[right]] == 1)
+        int ASCII_value = (int)s[right];
+        printf("%d %d %d %d\n", left, right, ASCII_value, max);
+        if (ASCII[ASCII_value] == 0)
+        {
+            ASCII[ASCII_value] = 1;
+            right++;
+        }
+        else if (ASCII[ASCII_value] == 1)
         {
             if (right - left > max)
                 max = right - left;
-            while (strcmp(&s[right], &s[left]) != 0)
+            char *s1 = &s[right];
+            char *s2 = &s[left];
+            while (strcmp(s1, s2) != 0)
             {
-                ASCII[s[left]] = 0;
+                int AS_value = (int)s[left];
+                ASCII[AS_value] = 0;
                 left++;
+                char *s2 = &s[left];
             }
             left++;
         }
-        else 
-        {
-            ASCII[s[right]] = 1;
-        }
     }
-    
+    if (right - left > max)
+                max = right - left;
+    return max;
 }
 
 // 1. Что делать, если встретили символ повторно? -
