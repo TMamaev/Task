@@ -1,43 +1,66 @@
+int Size(char* s)
+{
+    int size = 0;
+    while(s[size])
+    {
+        size++;
+    }
+    return size;
+}
+
+void makeone(int* ASCII, int left, int right, char *s)
+{
+    for (; left <= right; left ++)
+    {
+       int l = (int)s[left];
+        ASCII[l] = 1;
+    }
+}
+
 int lengthOfLongestSubstring(char* s) 
 {
-    int size;
-    for (int i = 0; s[i]; i++)
-        size++;
-    int ASCII[256]  = {0};
     int max = 0;
-
+    int size = Size(s);
     int left = 0;
     int right = 0;
-    int ASCII_value = (int)s[right];
-    if (ASCII_value > 0)
-        max = 1;
-    for (; right < size;)
+    int ASCII[127] = {0};
+    int r_ASCII_pos;
+    int l_ASCII_pos = (int)s[left];
+    int change = 0;
+
+    if (strcmp(s, "") == 0)
+        return 0;
+
+    for (; right < size; right++)
     {
-        int ASCII_value = (int)s[right];
-        printf("%d %d %d %d\n", left, right, ASCII_value, max);
-        if (ASCII[ASCII_value] == 0)
+        printf("%d %d %d\n", left, right, max);
+        r_ASCII_pos = (int)s[right];
+        if (ASCII[r_ASCII_pos] == 0)
         {
-            ASCII[ASCII_value] = 1;
-            right++;
+            ASCII[r_ASCII_pos] = 1;
         }
-        else if (ASCII[ASCII_value] == 1)
+        else
         {
             if (right - left > max)
                 max = right - left;
-            char *s1 = &s[right];
-            char *s2 = &s[left];
-            while (strcmp(s1, s2) != 0)
+            ASCII[r_ASCII_pos] = 2;
+            for (;  r_ASCII_pos != l_ASCII_pos; left++)
             {
-                int AS_value = (int)s[left];
-                ASCII[AS_value] = 0;
-                left++;
-                char *s2 = &s[left];
+                ASCII[l_ASCII_pos] = 0;
+                l_ASCII_pos = (int)s[left];
+                change++;
             }
-            left++;
+            if (change == 0)
+                left++;
+            change = 0;
+            makeone(ASCII, left, right, s);            
         }
     }
-    if (right - left > max)
-                max = right - left;
+    if (ASCII[r_ASCII_pos] == 1 && right - left > max)
+        return right-left;
+        
+    if (max == 0 && l_ASCII_pos > 0)
+        return 1;
     return max;
 }
 
