@@ -2,27 +2,28 @@ int minSubArrayLen(int target, int* nums, int numsSize) {
     int sum = 0;
     int left = 0;
     int right = 0;
-    int min = 9999;
-    for (; right < numsSize - 1 || left < right - 1;)
+    int min = numsSize;
+
+    for (; right < numsSize;)
     {
-        if (sum < target)
+        printf("%d %d %d %d\n", left, right, sum, min);
+        sum += nums[right];
+        while (sum >= target)
         {
-            sum += nums[right];
-            if (right + 1 < numsSize)
-                right++;
-        }
-        else if (sum >= target && right - left < min)
-        {
-            min = right - left;
+            if (min > right - left)
+            {
+                min = right - left;
+            }
             sum -= nums[left];
             left++;
         }
-        else if (sum >= target && right - left >= min)
-        {
-            sum -= nums[left];
-            left++;
-        }
-        printf("%d %d %d %d\n", left, right, min, sum);
+        right++;
     }
-    return min++;
+    if (sum < target && min == numsSize)
+        return 0;
+    if (min > right - left && sum >= target)
+    {
+        min = right - left;
+    }
+    return min + 1;
 }
