@@ -1,5 +1,6 @@
 #include <string.h>
 
+// https://leetcode.com/problems/longest-substring-without-repeating-characters/?envType=problem-list-v2&envId=sliding-window
 int lengthOfLongestSubstring(char* s) 
 {
     int max = 1;
@@ -32,21 +33,3 @@ int lengthOfLongestSubstring(char* s)
     }
     return max;
 }
-
-// abba
-//   ||
-
-// 1. Что делать, если встретили символ повторно? -
-// Рассчитываем длину подстроки до right (не включительно) -> right - left ? max
-// Подтянуть левую границу
-
-// 2. Куда подтягиваем левую границу?
-// На 1 правее первого символа из повторяющихся
-
-// 3. Как мы понимаем, что символ, стоящий на правой границе окна уже встречался?
-// Создать массив размером 127 и записывать туда встречающиеся символы.
-
-// 
-
-// abdebcccbab
-// |  | 
