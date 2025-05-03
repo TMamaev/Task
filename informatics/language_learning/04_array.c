@@ -1,9 +1,8 @@
-
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
-// https://informatics.msk.ru/mod/statements/view.php?id=208#1
+
 void scanf_mat(int n, int *arr)
 {
     for (int i = 0; i < n; i++)
@@ -20,8 +19,7 @@ void print_mat(int n, int *arr)
     }
 }
 
-
-
+// https://informatics.msk.ru/mod/statements/view.php?id=208#1
 void even()
 {
     int n;
@@ -36,6 +34,7 @@ void even()
             printf("%d ", A[i]);
 }
 
+// https://informatics.msk.ru/mod/statements/view.php?id=208&chapterid=64#1
 void even_nums()
 {
     int n;
@@ -216,20 +215,6 @@ int binary_search(int *arr, size_t size, int val)
             left = (left + right) / 2;
     }
 }
-// (b - a) / 2. (a + b) / 2
-// [a; b]
-//
-// gcc -o main main.c
-// a.out -> main
-
-// Иванов
-// а б ... ж ... и ... н ... я
-// открыл середину - Н.
-// листаю назад на половину от первой половин - Ж.
-// хранить позицию двух букв Ж и Н.
-// если найден - легко, проверка просто. Если на позиции right - 1 находится left
-
-
 
 #ifdef MAIN
 
@@ -238,7 +223,6 @@ int main()
     int arr[] = {1, 3, 4, 5, 67, 354, 7536};
     printf("%d\n", binary_search(arr, 7, 4));
     printf("%d\n", binary_search(arr, 7, 3));
-    //printf
     return 0;
 }
 
