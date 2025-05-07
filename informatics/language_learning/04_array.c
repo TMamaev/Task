@@ -131,7 +131,6 @@ void small_big_small()
     printf("%d", sum);
 }
 
-
 void reverse()
 {
     int n;
