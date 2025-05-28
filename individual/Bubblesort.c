@@ -1,9 +1,9 @@
-int main()
+int sorting(int arr[], int size)
 {
-    int arr[] = {5, 2, 8, 1, 4, 10, 3};
-    for (int i = 0; i < 7; i++)
+
+    for (int i = 0; i < size; i++)
     {
-        for (int n = 0; n < 6; n++)
+        for (int n = 0; n < size - 1; n++)
         {
             if (arr[n] > arr[n+1])
             {
@@ -13,7 +13,13 @@ int main()
             }
         }
     }
+}
 
-    for (int i = 0; i < 7; i++)
+int main()
+{
+    int arr[] = {5, 6, 1, 9, 12, 4, 3, 0, 7, 8};
+    int size = sizeof(arr)/sizeof(int);
+    sorting(arr, size);
+    for (int i = 0; i < size; i++)
         printf("%d ", arr[i]);
 }

@@ -1,13 +1,14 @@
-int main()
+#include <stdio.h>
+#include <limits.h>
+
+int sorting(int arr[], int size)
 {
-    int arr[] = {5, 6, 1, 9, 12, 4, 3, 0};
-    int ans[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-    int min = 999;
+    int min = INT_MAX;
     int pos;
     
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < size; i++)
     {
-        for (int n = 0; n < 8; n++)
+        for (int n = i; n < size; n++)
         {
             if (arr[n] < min)
             {
@@ -15,11 +16,20 @@ int main()
                 pos = n;
             }
         }
-        arr[pos] = 1000;
+        int copy = arr[i];
+        arr[i] = min;
+        arr[pos] = copy;
         pos = 0;
-        ans[i] = min;
-        min = 999;
+        
+        min = INT_MAX;
     }
-    for (int i = 0; i < 8; i++)
-        printf("%d ", ans[i]);
+}
+
+int main()
+{
+    int arr[] = {5, 6, 1, 9, 12, 4, 3, 0, 7, 8};
+    int size = sizeof(arr)/sizeof(int);
+    sorting(arr, size);
+    for (int i = 0; i < size; i++)
+        printf("%d ", arr[i]);
 }
