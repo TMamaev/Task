@@ -1,6 +1,5 @@
 int sorting(int arr[], int size)
 {
-
     for (int i = 0; i < size; i++)
     {
         for (int n = 0; n < size - 1; n++)
