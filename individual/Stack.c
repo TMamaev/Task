@@ -3,34 +3,41 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct list_stack
+typedef struct s_stack
 {
-    int data;
-    struct list_stack *next;
+    void *data;
+    struct s_stack *next;
 } t_stack;
 
-void push(t_stack** list, char n)
+void push(t_stack** stack, void* data)
 {
     t_stack *new = malloc(sizeof(t_stack));
     
-    if (!list || (new = malloc(sizeof(t_stack))) == NULL)
+    if (!stack || (new = malloc(sizeof(t_stack))) == NULL)
         return ;
 
-    new->data = n;
-    new->next = *list;
-    *list = new;
+    new->data = data;
+    new->next = *stack;
+    *stack = new;
 }
 
-void pop(t_stack** list)
+void pop(t_stack** stack)
 {
     t_stack *copy_head;
 
-    if (!list || !*list)
+    if (!stack || !*stack)
         return ;
     
-    copy_head = *list;
-    *list = (*list)->next;
+    copy_head = *stack;
+    *stack = (*stack)->next;
     free(copy_head);
+}
+
+void *top(t_stack** stack)
+{
+    if (!stack || !*stack)
+        return ;
+    return (*stack)->data;
 }
 
 void push_back(long n, t_stack** stack, int k)
@@ -45,18 +52,4 @@ void push_back(long n, t_stack** stack, int k)
     new->next = NULL;
     (*stack)->next = new;
     *stack = copy;
-}
-
-int main()
-{   
-    t_stack *head = malloc(sizeof(t_stack));
-    head->data = 1;
-    t_stack *head1 = malloc(sizeof(t_stack));
-    head1->data = 2;
-    t_stack *head2 = malloc(sizeof(t_stack));
-    head2->data = 3;
-    head->next = head1;
-    head1->next = head2;
-    head2->next = NULL;
-    return 0;
 }
