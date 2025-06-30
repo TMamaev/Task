@@ -1,13 +1,6 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include <Queue.h>
 
-typedef struct s_queue
-{
-    int data;
-    struct s_queue *next;
-} t_queue;
-
-void enqueue(t_queue** head, int n)
+void enqueue(t_queue** head, void* n)
 {
     t_queue *new = malloc(sizeof(t_queue));
     new->data = n;
@@ -15,7 +8,7 @@ void enqueue(t_queue** head, int n)
     *head = new;
 }
 
-void dequeue(t_queue** head)
+void dequeue(t_queue** head, void (*func)(void* data))
 {
     t_queue *copy = *head;
     t_queue *copy_next = NULL;
@@ -26,6 +19,7 @@ void dequeue(t_queue** head)
         *head = (*head)->next;
     }
     t_queue *copy_del = *head;
+    func((*head)->data);
     free(copy_del);
     *head = copy_next;
     (*head)->next = NULL;
@@ -34,19 +28,4 @@ void dequeue(t_queue** head)
 
 int main()
 {
-    t_queue *head = malloc(sizeof(t_queue));
-    head->data = 1;
-    t_queue *head2 = malloc(sizeof(t_queue));
-    head2->data = 3;
-    head2->next = NULL;
-    head->next = head2;
-    enqueue(&head, 2);
-    dequeue(&head);
-    while (head != NULL)
-    {
-        printf("%d ", head->data);
-        head = head->next;
-    }
-
-    return 0;
 }
