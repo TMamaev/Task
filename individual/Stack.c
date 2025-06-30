@@ -21,13 +21,15 @@ void push(t_stack** stack, void* data)
     *stack = new;
 }
 
-void pop(t_stack** stack)
+void pop(t_stack** stack, void (*func)(void* data))
 {
     t_stack *copy_head;
 
     if (!stack || !*stack)
         return ;
     
+    func((*stack)->data);
+
     copy_head = *stack;
     *stack = (*stack)->next;
     free(copy_head);
