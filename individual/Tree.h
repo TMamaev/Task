@@ -1,5 +1,5 @@
-#ifndef STACK_H  
-#define STACK_H 
+#ifndef TREE_H  
+#define TREE_H 
 #include <stdlib.h>
 
 typedef struct s_btree
