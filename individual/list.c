@@ -79,10 +79,3 @@ void ft_lstadd_back(t_list **lst, void* data)
     }
     (*lst)->next = new;
 }
-
-
-int main()
-{   
-
-    return 0;
-}
