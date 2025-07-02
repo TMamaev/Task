@@ -11,7 +11,3 @@ t_btree *btree_new(void* n, t_btree *left, t_btree *right)
     }
     return tree;
 }
-
-int main()
-{
-}
