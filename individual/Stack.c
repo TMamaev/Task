@@ -11,9 +11,10 @@ typedef struct s_stack
 
 void push(t_stack** stack, void* data)
 {
+    if (!stack)
+        return ;
     t_stack *new = malloc(sizeof(t_stack));
-    
-    if (!stack || (new = malloc(sizeof(t_stack))) == NULL)
+    if (!new)
         return ;
 
     new->data = data;
@@ -44,6 +45,8 @@ void *top(t_stack** stack)
 
 void push_back(long n, t_stack** stack, int k)
 {
+    if (!stack || !(*stack))
+        return ;
     t_stack *copy = *stack;
     for (int i = 1; i < k; i++)
     {
