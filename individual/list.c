@@ -12,6 +12,8 @@ typedef struct list_item
 
 int lst_length(struct list_item *head)
 {
+    if (!head)
+        return ;
     int length = 0;
     
     while (head != NULL)
@@ -24,8 +26,8 @@ int lst_length(struct list_item *head)
 
 t_list *lst_last(t_list *head)
 {
-    if (head == NULL)
-        return NULL;
+    if (!head)
+        return ;
     while (head->next != NULL)
     {           
         head = head->next;
@@ -35,16 +37,20 @@ t_list *lst_last(t_list *head)
 
 void ft_lstadd_front(t_list **head, void* data)
 {
-    t_list *new = malloc(sizeof(t_list));
-    new->data = data;
-    if (!head || !new)
+    if (!head)
         return ;
+    t_list *new = malloc(sizeof(t_list));
+    if (!new)
+        return ;
+    new->data = data;
     new->next = *head;
     *head = new;
 }
 
 void ft_lstclear(t_list **lst, void (*func)(void *))
 {
+    if (!lst || !(*lst))
+        return ;
     while((*lst)->next != NULL)
     {
         func((*lst)->data);
@@ -56,6 +62,8 @@ void ft_lstclear(t_list **lst, void (*func)(void *))
 
 void ft_lstadd_back(t_list **lst, void* data)
 {
+    if (!lst || !(*lst))
+        return ;
     t_list *new = malloc(sizeof(t_list));
     new->data = data;
     if (!new)
