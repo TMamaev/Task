@@ -36,11 +36,11 @@ void pop(t_stack** stack, void (*func)(void* data))
     free(copy_head);
 }
 
-void *top(t_stack** stack)
+t_stack *top(t_stack** stack)
 {
     if (!stack || !*stack)
-        return ;
-    return (*stack)->data;
+        return NULL;
+    return *stack;
 }
 
 void push_back(long n, t_stack** stack, int k)
