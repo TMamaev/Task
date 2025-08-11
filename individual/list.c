@@ -13,7 +13,7 @@ typedef struct list_item
 int lst_length(struct list_item *head)
 {
     if (!head)
-        return ;
+        return 0;
     int length = 0;
     
     while (head != NULL)
@@ -26,8 +26,8 @@ int lst_length(struct list_item *head)
 
 t_list *lst_last(t_list *head)
 {
-    if (!head)
-        return ;
+    if (head == NULL)
+        return NULL;
     while (head->next != NULL)
     {           
         head = head->next;
