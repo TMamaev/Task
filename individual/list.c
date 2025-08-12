@@ -53,7 +53,8 @@ void ft_lstclear(t_list **lst, void (*func)(void *))
         return ;
     while((*lst)->next != NULL)
     {
-        func((*lst)->data);
+        if (func != NULL)
+            func((*lst)->data);
         t_list *copy_head = (*lst);
         free(copy_head);
         *lst = (*lst)->next;
