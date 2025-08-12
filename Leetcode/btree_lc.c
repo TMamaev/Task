@@ -1,5 +1,12 @@
 #include <Tree.h>
 
+typedef struct list_stack
+{
+    int root;
+    struct list_stack *next;
+} t_stack;
+
+
 void push(t_stack** list, t_btree* n)
 {
     t_stack *new = malloc(sizeof(t_stack));
@@ -191,7 +198,7 @@ int sumOfLeftLeaves(t_btree* root) {
     }
     if (root->left != NULL && root->left->left == NULL && root->left->right == NULL)
     {
-        res += root->left->data;
+        res += (int)(root->left->data);
     }
     else
     {
