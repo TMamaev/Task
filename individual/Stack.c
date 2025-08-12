@@ -29,7 +29,8 @@ void pop(t_stack** stack, void (*func)(void* data))
     if (!stack || !*stack)
         return ;
     
-    func((*stack)->data);
+    if (func != NULL)
+        func((*stack)->data);
 
     copy_head = *stack;
     *stack = (*stack)->next;
