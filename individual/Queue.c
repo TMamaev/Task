@@ -20,7 +20,7 @@ void dequeue(t_queue** head, void (*func)(void* data))
     t_queue *copy = NULL;
     t_queue *copy_next = NULL;
     
-    if (!head || !(*head) || !func)
+    if (!head || !(*head))
         return ;
     copy = *head;
     while ((*head)->next != NULL)
@@ -29,7 +29,8 @@ void dequeue(t_queue** head, void (*func)(void* data))
         *head = (*head)->next;
     }
     t_queue *copy_del = *head;
-    func((*head)->data);
+    if (func != NULL)
+        func((*head)->data);
     free(copy_del);
     *head = copy_next;
     (*head)->next = NULL;
