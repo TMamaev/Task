@@ -8,6 +8,6 @@ typedef struct s_btree
     struct s_btree *left;
     struct s_btree *right;
 } t_btree;
-t_btree *btree_new(void* n, t_btree *left, t_btree *right);
+t_btree *btree_new(void* new, t_btree *left, t_btree *right);
 
 #endif
