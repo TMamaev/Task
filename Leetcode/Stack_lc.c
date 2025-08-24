@@ -1,9 +1,8 @@
+#include <stack.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include <stack.h>
 
 int valid_paren()
 {   
